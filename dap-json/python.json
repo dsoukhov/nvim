@@ -1,0 +1,8 @@
+{
+  "name": "python",
+  "type": "python",
+  "request": "launch",
+  "program": "",
+  "pythonPath": "/usr/bin/python",
+  "args": ["arg1", "arg2"]
+}
