@@ -13,6 +13,8 @@ let g:startify_bookmarks = [
            \ { 'b': '~/.bashrc' },
             \ ]
 
+let g:startify_skiplist = [ 'COMMIT_EDITMSG' ]
+
 let g:startify_session_autoload = 1
 let g:startify_change_to_vcs_root = 0
 let g:startify_change_to_dir = 0

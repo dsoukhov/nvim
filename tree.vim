@@ -11,12 +11,15 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true
+  },
+  autotag = {
+    enable = true
   }
 }
 EOF
 
-set foldmethod=expr
-setlocal foldlevelstart=99
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldmethod=expr
+" setlocal foldlevelstart=99
+" set foldexpr=nvim_treesitter#foldexpr()
 
 nmap <Leader>tr :write \| edit \| TSBufEnable highlight<CR>

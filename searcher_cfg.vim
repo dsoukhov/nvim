@@ -6,9 +6,29 @@ local actions = require('telescope.actions')
 
 require('telescope').setup{
   defaults = {
+    scroll_strategy    = "cycle",
+    selection_strategy = "reset",
+    layout_strategy    = "flex",
     mappings = {
+      n = {
+        ["<Esc>"] = actions.close,
+        ["<CR>"]  = actions.select_default + actions.center,
+        ["<C-v>"] = actions.select_vertical,
+        ["<C-x>"] = actions.select_horizontal,
+        ["<C-t>"] = actions.select_tab,
+        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-d>"] = actions.preview_scrolling_down,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+      },
       i = {
-        ["<esc>"] = actions.close
+        ["<Esc>"] = actions.close,
+        ["<CR>"]  = actions.select_default + actions.center,
+        ["<C-v>"] = actions.select_vertical,
+        ["<C-x>"] = actions.select_horizontal,
+        ["<C-t>"] = actions.select_tab,
+        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-d>"] = actions.preview_scrolling_down,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
       },
     },
   }
@@ -34,9 +54,3 @@ nnoremap <Leader>gl :lua require'telescope_cfg'.git_log()<CR>
 nnoremap <Leader># :lua require'telescope_cfg'.config_files()<CR>
 " ga to preform ag serach on cursor word
 nnoremap ga :Telescope grep_string<CR>
-
-let g:rnvimr_ex_enable = 1
-let g:rnvimr_enable_picker = 1
-let g:rnvimr_enable_bw = 1
-nmap <Leader>n :RnvimrToggle<CR>
-tnoremap <silent> <Leader>n <C-\><C-n>:RnvimrToggle<CR>

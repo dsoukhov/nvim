@@ -2,8 +2,6 @@ set encoding=utf-8
 set modelines=1
 " enable mouse support
 set mouse=a
-" enable 256 color support
-set t_Co=256
 set autoread
 set clipboard=unnamedplus
 set incsearch
@@ -43,6 +41,7 @@ set hlsearch
 " set vertical col
 set colorcolumn=80
 highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
+set cursorline
 set cmdheight=1 " only one line for commands
 set shortmess+=c " don't need to press enter so often
 " no comment on newline
