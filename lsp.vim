@@ -24,10 +24,6 @@ require'compe'.setup {
   };
 }
 
-require("lsp-rooter").setup {
-  ignore_lsp = {"efm"}
-}
-
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -56,14 +52,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>d', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
   --buf_set_keymap('n', '<space>l', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-  -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "mt", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  end
-  if client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("v", "mt", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-  end
-
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
@@ -78,7 +66,7 @@ end
 
 local clangd_settings = {
   clangd = {
-    filetypes = { "c", "cpp", "objc", "objcpp" },
+    filetypes = { "c", "cpp" },
     rootPatterns = { "compile_commands.json", ".git", "Makefile" },
     args = {
       "-j=6",
@@ -170,6 +158,45 @@ require'lspinstall'.post_install_hook = function ()
   setup_servers() -- reload installed servers
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
+
+require("lsp-rooter").setup {
+  ignore_lsp = {"efm"}
+}
+
+-- efm config
+local vint = require "efm/vint"
+local luafmt = require "efm/luafmt"
+local golint = require "efm/golint"
+local flake8 = require "efm/flake8"
+local rustfmt = require "efm/rustfmt"
+local prettier = require "efm/prettier"
+local eslint = require "efm/eslint"
+local shellcheck = require "efm/shellcheck"
+
+require "lspconfig".efm.setup {
+  init_options = {documentFormatting = true},
+  settings = {
+    rootMarkers = {".git/"},
+    languages = {
+      python = {flake8},
+      lua = {luafmt},
+      go = {golint},
+      vim = {vint},
+      rust = {rustfmt},
+      typescript = {eslint},
+      javascript = {eslint},
+      typescriptreact = {eslint},
+      javascriptreact = {eslint},
+      yaml = {prettier},
+      json = {prettier},
+      html = {prettier},
+      scss = {prettier},
+      css = {prettier},
+      markdown = {prettier},
+      sh = {shellcheck},
+    }
+  }
+}
 
 EOF
 "set lsp colors

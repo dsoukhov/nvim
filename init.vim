@@ -6,18 +6,21 @@ Plug 'lambdalisue/suda.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'bfredl/nvim-miniyank'
 Plug 'mbbill/undotree'
-Plug 'Yggdroot/indentLine'
-Plug 'norcalli/nvim-colorizer.lua'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag', {'branch':'main'}
+Plug 'AndrewRadev/whitespaste.vim'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
+Plug 'lewis6991/gitsigns.nvim', {'branch':'main'}
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring', {'branch':'main'}
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'rafamadriz/friendly-snippets'
+Plug 'rafamadriz/friendly-snippets', {'branch':'main'}
 Plug 'easymotion/vim-easymotion'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'ahmedkhalf/lsp-rooter.nvim', {'branch':'main'}
@@ -44,8 +47,10 @@ source $HOME/.config/nvim/base.vim
 source $HOME/.config/nvim/colorscheme.vim
 source $HOME/.config/nvim/tree.vim
 source $HOME/.config/nvim/sessions_cfg.vim
+source $HOME/.config/nvim/tpope_cfg.vim
 source $HOME/.config/nvim/snippets_cfg.vim
 source $HOME/.config/nvim/quickmotion_cfg.vim
+source $HOME/.config/nvim/pairs_cfg.vim
 source $HOME/.config/nvim/copypaste_cfg.vim
 source $HOME/.config/nvim/undotree_cfg.vim
 source $HOME/.config/nvim/lightline_cfg.vim

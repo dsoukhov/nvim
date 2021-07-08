@@ -37,7 +37,10 @@ function! LightlineLspErrors()
 endfunction
 
 function! LightlineGitChanges()
-  return sy#repo#get_stats_decorated()
+  if exists("b:gitsigns_status")
+    return b:gitsigns_status
+  endif
+  return ''
 endfunction
 
 set showtabline=2
