@@ -4,7 +4,7 @@ nmap <leader>gf :diffget //2<CR>
 nmap <leader>gd :Gdiff master<CR>
 
 " don't autoclose fugitive buffers
-autocmd BufReadPost fugitive://* set bufhidden=hide
+"autocmd BufReadPost fugitive://* set bufhidden=hide
 
 nmap ]G 9999[g
 nmap [G 9999]g

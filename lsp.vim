@@ -21,6 +21,7 @@ require'compe'.setup {
     vsnip = true;
     treesitter = true;
     nvim_lsp = true;
+    spell = true;
   };
 }
 
@@ -200,11 +201,11 @@ require "lspconfig".efm.setup {
 
 EOF
 "set lsp colors
-function! SetLSPHighlights()
-    highlight LspDiagnosticsUnderlineError guifg=#EB4917 gui=undercurl
-    highlight LspDiagnosticsUnderlineWarning guifg=#EBA217 gui=undercurl
-    highlight LspDiagnosticsUnderlineInformation guifg=#17D6EB, gui=undercurl
-    highlight LspDiagnosticsUnderlineHint guifg=#17EB7A gui=undercurl
-endfunction
+ " function! SetLSPHighlights()
+ "     highlight LspDiagnosticsUnderlineError guifg=#EB4917 gui=undercurl
+ "     highlight LspDiagnosticsUnderlineWarning guifg=#EBA217 gui=undercurl
+ "     highlight LspDiagnosticsUnderlineInformation guifg=#17D6EB, gui=undercurl
+ "     highlight LspDiagnosticsUnderlineHint guifg=#17EB7A gui=undercurl
+ " endfunction
 
-autocmd ColorScheme * call SetLSPHighlights()
+" autocmd ColorScheme * call SetLSPHighlights()

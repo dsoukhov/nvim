@@ -47,6 +47,10 @@ set shortmess+=c " don't need to press enter so often
 " no comment on newline
 au BufEnter * set fo-=c fo-=r fo-=o
 
+" follow view of cursor
+set sidescrolloff=999
+set scrolloff=999
+
 " remap split navigations
 nnoremap <C-j> <C-W><C-J>
 nnoremap <C-k> <C-W><C-K>

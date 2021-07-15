@@ -10,6 +10,7 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag', {'branch':'main'}
 Plug 'AndrewRadev/whitespaste.vim'
+Plug 'sickill/vim-pasta'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim', {'branch':'main'}
@@ -18,6 +19,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring', {'branch':'main'}
 Plug 'tpope/vim-repeat'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets', {'branch':'main'}
@@ -38,7 +40,7 @@ Plug 'nvim-telescope/telescope-dap.nvim'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify', {'do':'git fetch origin pull/482/head:pr-482 && git checkout pr-482'}
 Plug 'janko/vim-test'
 Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 call plug#end()

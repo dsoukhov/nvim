@@ -20,7 +20,7 @@ end
 function M.dap_templates()
   require('telescope.builtin').find_files {
     prompt_title = "Dap templates",
-    shorten_path = false,
+    path_display = {'tail'},
     cwd = "~/.config/nvim/dap-json",
     attach_mappings = function(prompt_bufnr)
       action_set.select:replace(function()
@@ -71,10 +71,27 @@ function M.yanks(aftercursor)
   }):find()
 end
 
+function M.tester_templates()
+  require('telescope.builtin').find_files {
+    prompt_title = "Tester templates",
+    path_display = {'tail'},
+    cwd = "~/.config/nvim/tester/templates",
+    attach_mappings = function(prompt_bufnr)
+      action_set.select:replace(function()
+        local entry = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        vim.api.nvim_command('e .test.json')
+        vim.api.nvim_command('0r ~/.config/nvim/tester/templates/'..entry.value)
+      end)
+      return true
+    end
+  }
+end
+
 function M.debugger_templates()
   require('telescope.builtin').find_files {
     prompt_title = "Debugger templates",
-    shorten_path = true,
+    path_display = {'tail'},
     cwd = "~/.config/nvim/debugger/templates",
     attach_mappings = function(prompt_bufnr)
       action_set.select:replace(function()
@@ -91,7 +108,7 @@ end
 function M.runner_templates()
   require('telescope.builtin').find_files {
     prompt_title = "Runner templates",
-    shorten_path = true,
+    path_display = {'tail'},
     cwd = "~/.config/nvim/async-tasks/templates",
     attach_mappings = function(prompt_bufnr)
       action_set.select:replace(function()
@@ -145,10 +162,28 @@ function M.git_cbuf()
   }
 end
 
+function M.sessions_search()
+  require('telescope.builtin').find_files {
+    prompt_title = "Select Session",
+    path_display = {'tail'},
+    previewer = false,
+    cwd = "~/.local/share/nvim/sessions",
+    attach_mappings = function()
+      actions.select_default:replace(function(selection)
+        local entry = action_state.get_selected_entry()
+        actions.close(selection)
+        vim.api.nvim_command("SLoad "..entry.value)
+        vim.api.nvim_command("echon ''")
+      end)
+    return true
+    end
+  }
+end
+
 function M.workspace_files()
   require('telescope.builtin').find_files {
     prompt_title = "Workspace",
-    shorten_path = false,
+    path_display = {'hidden'},
     cwd = "~/workspace/"
   }
 end
@@ -156,7 +191,7 @@ end
 function M.config_files()
   require('telescope.builtin').find_files {
     prompt_title = "Config",
-    shorten_path = false,
+    path_display = {'hidden'},
     cwd = "~/.config/"
   }
 end

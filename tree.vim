@@ -71,11 +71,55 @@ vim.g.indent_blankline_context_patterns = {
     "variable_declarator", "while_statement", "with_statement",
     "yield_expression"
 }
+
+vim.g.nvim_tree_highlight_opened_files = 1
+vim.g.nvim_tree_lsp_diagnostics = 1
+vim.g.nvim_tree_git_hl = 1
+vim.g.nvim_tree_quit_on_open = 1
+vim.g.nvim_tree_auto_open = 1
+vim.g.nvim_tree_auto_close = 1
+vim.g.nvim_tree_update_cwd = 1
+vim.g.nvim_tree_hijack_cursor = 1
+vim.g.nvim_tree_show_icons = {
+    git = 1,
+    folders = 1,
+    files = 1,
+}
+vim.g.nvim_tree_icons = {
+    default = '',
+    symlink = '',
+    git = {
+        unstaged = "✗",
+        staged = "✓",
+        unmerged = "",
+        renamed = "➜",
+        untracked = "★"
+    },
+    folder = {
+        default = "",
+        open = "",
+        empty = "",
+        empty_open = "",
+        symlink = "",
+        symlink_open = "",
+    },
+    lsp = {
+        hint = "",
+        info = "",
+        warning = "",
+        error = "",
+    }
+}
 EOF
 
-set foldmethod=expr
-setlocal foldlevelstart=99
-set foldexpr=nvim_treesitter#foldexpr()
-
+highlight IndentBlanklineContextChar guifg=#EBA217 gui=nocombine
 nmap <Leader>tr :write \| edit \| TSBufEnable highlight<CR>
 let g:indent_blankline_char="│"
+
+"nvim-tree cfg
+let g:nvim_tree_update_cwd = 1
+nnoremap <leader>n :NvimTreeRefresh<CR>:NvimTreeToggle<CR>:echon ''<CR>
+let g:nvim_tree_auto_ignore_ft = [ 'startify', 'dashboard' ]
+"hack to fix double tree enteries
+au SessionLoadPost * lua require'nvim-tree.lib'.change_dir("..")
+au SessionLoadPost * lua require'nvim-tree.lib'.change_dir(vim.loop.cwd())

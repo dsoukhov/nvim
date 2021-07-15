@@ -36,7 +36,7 @@ nnoremap <leader>dK :lua require'dap.ui.variables'.hover(function () return vim.
 vnoremap <leader>dK :lua require'dap.ui.variables'.visual_hover()<CR>
 nnoremap <leader>ds :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
 nnoremap <leader>da :lua require'dap_helper'.attach()<CR>
-nnoremap <leader>dx :lua require'dap'.disconnect();require'dap'.stop();require'dap'.repl.close()<CR>:AsyncStop<CR>:bd! term<CR>:bd! repl<CR>
+nnoremap <leader>dx :lua require'dap'.disconnect();require'dap'.stop();require'dap'.repl.close()<CR>:AsyncStop<CR>:bd! /bin/sh<CR>:bd! repl<CR>
 
 lua << EOF
 require('telescope').setup()
@@ -45,6 +45,6 @@ EOF
 nnoremap <leader>df :Telescope dap frames<CR>
 nnoremap <leader>db :Telescope dap list_breakpoints<CR>
 
-"dap virtal text
-"let g:dap_virtual_text = 'true'
-let g:dap_virtual_text = 'all frames'
+"dap virtual text
+let g:dap_virtual_text = 'true'
+"let g:dap_virtual_text = 'all frames'
