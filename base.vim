@@ -89,7 +89,7 @@ nnoremap <CR> :noh<CR><CR>
 " replace current selection with buffer
 vmap r "_dP
 "" Search highlight color
-hi Search cterm=NONE ctermfg=black ctermbg=yellow
+"hi Search cterm=NONE ctermfg=black ctermbg=yellow
 
 augroup resume_edit_position
     autocmd!

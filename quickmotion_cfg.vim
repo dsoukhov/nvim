@@ -1,6 +1,7 @@
-"map  f <Plug>(easymotion-bd-f)
-"nmap f <Plug>(easymotion-overwin-f)
-map  f <Plug>(easymotion-bd-f2)
-nmap f <Plug>(easymotion-overwin-f2)
-map <Leader>/ <Plug>(easymotion-bd-w)
-nmap <Leader>/ <Plug>(easymotion-overwin-w)
+lua << EOF
+require'hop'.setup()
+EOF
+nmap <Leader>J :HopWord<CR>
+nmap <Leader>j :HopChar1<CR>
+nmap <Leader>l :HopLine<CR>
+nmap <Leader>/ :HopPattern<CR>

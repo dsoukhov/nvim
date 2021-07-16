@@ -23,7 +23,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets', {'branch':'main'}
-Plug 'easymotion/vim-easymotion'
+Plug 'phaazon/hop.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'ahmedkhalf/lsp-rooter.nvim', {'branch':'main'}
 Plug 'neovim/nvim-lspconfig'
@@ -46,12 +46,12 @@ Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 source $HOME/.config/nvim/base.vim
+source $HOME/.config/nvim/quickmotion_cfg.vim
 source $HOME/.config/nvim/colorscheme.vim
 source $HOME/.config/nvim/tree.vim
 source $HOME/.config/nvim/sessions_cfg.vim
 source $HOME/.config/nvim/tpope_cfg.vim
 source $HOME/.config/nvim/snippets_cfg.vim
-source $HOME/.config/nvim/quickmotion_cfg.vim
 source $HOME/.config/nvim/pairs_cfg.vim
 source $HOME/.config/nvim/copypaste_cfg.vim
 source $HOME/.config/nvim/undotree_cfg.vim
