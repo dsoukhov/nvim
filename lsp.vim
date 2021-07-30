@@ -16,12 +16,13 @@ require'compe'.setup {
   max_menu_width = 100,
   documentation = true,
   source = {
+    spell = true;
     path = true;
     buffer = true;
     vsnip = true;
     treesitter = true;
     nvim_lsp = true;
-    spell = true;
+    nvim_lua = true;
   };
 }
 
@@ -106,8 +107,8 @@ local lua_settings = {
     },
 
     workspace = {
-      maxPreload = 500,
-      preloadFileSize = 500,
+      maxPreload = 5000,
+      preloadFileSize = 5000,
       library = {
         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
         [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
@@ -160,45 +161,41 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-require("lsp-rooter").setup {
-  ignore_lsp = {"efm"}
-}
-
 -- efm config
-local vint = require "efm/vint"
-local luafmt = require "efm/luafmt"
-local golint = require "efm/golint"
-local flake8 = require "efm/flake8"
-local rustfmt = require "efm/rustfmt"
-local prettier = require "efm/prettier"
-local eslint = require "efm/eslint"
-local shellcheck = require "efm/shellcheck"
-
-require "lspconfig".efm.setup {
-  init_options = {documentFormatting = true},
-  settings = {
-    rootMarkers = {".git/"},
-    languages = {
-      python = {flake8},
-      lua = {luafmt},
-      go = {golint},
-      vim = {vint},
-      rust = {rustfmt},
-      typescript = {eslint},
-      javascript = {eslint},
-      typescriptreact = {eslint},
-      javascriptreact = {eslint},
-      yaml = {prettier},
-      json = {prettier},
-      html = {prettier},
-      scss = {prettier},
-      css = {prettier},
-      markdown = {prettier},
-      sh = {shellcheck},
-    }
-  }
-}
-
+--local vint = require "efm/vint"
+--local luafmt = require "efm/luafmt"
+--local golint = require "efm/golint"
+--local flake8 = require "efm/flake8"
+--local rustfmt = require "efm/rustfmt"
+--local prettier = require "efm/prettier"
+--local eslint = require "efm/eslint"
+--local shellcheck = require "efm/shellcheck"
+--
+--require "lspconfig".efm.setup {
+--  init_options = {documentFormatting = true},
+--  settings = {
+--    rootMarkers = {".git/"},
+--    languages = {
+--      python = {flake8},
+--      lua = {luafmt},
+--      go = {golint},
+--      vim = {vint},
+--      rust = {rustfmt},
+--      typescript = {eslint},
+--      javascript = {eslint},
+--      typescriptreact = {eslint},
+--      javascriptreact = {eslint},
+--      yaml = {prettier},
+--      json = {prettier},
+--      html = {prettier},
+--      scss = {prettier},
+--      css = {prettier},
+--      markdown = {prettier},
+--      sh = {shellcheck},
+--    }
+--  }
+--}
+--
 EOF
 "set lsp colors
  " function! SetLSPHighlights()
