@@ -34,15 +34,12 @@ function M.dap_templates()
   }
 end
 
-function M.yanks(aftercursor)
-  local source = vim.fn['miniyank#read']()
+function M.runner_configs()
+  local source = vim.fn['asynctasks#source']("")
   local tbl = {}
-  local title = "yanks"
-  if aftercursor then
-    title = "Yanks"
-  end
+  local title = "Runner configs"
   for k, v in pairs(source) do
-    table.insert(tbl, k, v[1][1])
+    table.insert(tbl, k, v[1])
   end
   pickers.new({
     prompt_title = title,
@@ -64,7 +61,7 @@ function M.yanks(aftercursor)
       action_set.select:replace(function()
         local entry = action_state.get_selected_entry()
         actions.close(selected)
-        vim.api.nvim_put({entry.value}, "", aftercursor, true)
+        vim.api.nvim_command('AsyncTask '..entry.value)
       end)
       return true
     end,
@@ -80,25 +77,8 @@ function M.tester_templates()
       action_set.select:replace(function()
         local entry = action_state.get_selected_entry()
         actions.close(prompt_bufnr)
-        vim.api.nvim_command('e .test.json')
+        vim.api.nvim_command('e .tasks')
         vim.api.nvim_command('0r ~/.config/nvim/tester/templates/'..entry.value)
-      end)
-      return true
-    end
-  }
-end
-
-function M.debugger_templates()
-  require('telescope.builtin').find_files {
-    prompt_title = "Debugger templates",
-    path_display = {'tail'},
-    cwd = "~/.config/nvim/debugger/templates",
-    attach_mappings = function(prompt_bufnr)
-      action_set.select:replace(function()
-        local entry = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        vim.api.nvim_command('e .debug.json')
-        vim.api.nvim_command('0r ~/.config/nvim/debugger/templates/'..entry.value)
       end)
       return true
     end
@@ -119,6 +99,12 @@ function M.runner_templates()
       end)
       return true
     end
+  }
+end
+
+function M.git_checkout()
+  require('telescope.builtin').git_commits {
+  prompt_title = "Git Checkout",
   }
 end
 
@@ -173,7 +159,6 @@ function M.sessions_search()
         local entry = action_state.get_selected_entry()
         actions.close(selection)
         vim.api.nvim_command("SLoad "..entry.value)
-        vim.api.nvim_command("echon ''")
       end)
     return true
     end
