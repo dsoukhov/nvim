@@ -2,6 +2,7 @@ nmap <leader>gb :Git blame<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 nmap <leader>gd :Gdiff master<CR>
+nmap <leader>gCc :Git checkout master<CR>
 
 " don't autoclose fugitive buffers
 "autocmd BufReadPost fugitive://* set bufhidden=hide
@@ -55,5 +56,4 @@ require('gitsigns').setup {
   use_decoration_api = true,
   use_internal_diff = true,  -- If luajit is present
 }
-
 EOF
