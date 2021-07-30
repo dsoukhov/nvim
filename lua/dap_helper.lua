@@ -20,7 +20,16 @@ local function cont()
   end
 end
 
+local function repl_tog()
+  if dap.session() ~= nil then
+    require'dap'.repl.toggle({}, ':belowright vsp')
+  else
+    print("No active session. Doing nothing.")
+  end
+end
+
 return {
   cont = cont,
-  attach = attach
+  attach = attach,
+  repl_tog = repl_tog
 }
