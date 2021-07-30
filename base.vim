@@ -40,7 +40,6 @@ set noswapfile
 set hlsearch
 " set vertical col
 set colorcolumn=80
-highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
 set cursorline
 set cmdheight=1 " only one line for commands
 set shortmess+=c " don't need to press enter so often
@@ -91,10 +90,5 @@ vmap r "_dP
 "" Search highlight color
 "hi Search cterm=NONE ctermfg=black ctermbg=yellow
 
-augroup resume_edit_position
-    autocmd!
-    autocmd BufReadPost *
-        \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-        \ | execute "normal! g`\"zvzz"
-        \ | endif
-augroup END
+" map select last pasted as gp
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
