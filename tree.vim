@@ -72,13 +72,16 @@ vim.g.indent_blankline_context_patterns = {
     "yield_expression"
 }
 
+vim.g.nvim_tree_disable_netrw = 1
+vim.g.nvim_tree_hijack_netrw = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_lsp_diagnostics = 1
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_auto_open = 1
 vim.g.nvim_tree_auto_close = 1
-vim.g.nvim_tree_update_cwd = 1
+vim.g.nvim_tree_update_cwd = 0
+vim.g.nvim_tree_auto_ignore_ft = { 'startify', 'dashboard' }
 vim.g.nvim_tree_hijack_cursor = 1
 vim.g.nvim_tree_show_icons = {
     git = 1,
@@ -116,10 +119,10 @@ highlight IndentBlanklineContextChar guifg=#EBA217 gui=nocombine
 nmap <Leader>tr :write \| edit \| TSBufEnable highlight<CR>
 let g:indent_blankline_char="│"
 
+let g:rooter_silent_chdir = 1
+
 "nvim-tree cfg
-let g:nvim_tree_update_cwd = 1
-nnoremap <leader>n :NvimTreeRefresh<CR>:NvimTreeToggle<CR>:echon ''<CR>
-let g:nvim_tree_auto_ignore_ft = [ 'startify', 'dashboard' ]
-"hack to fix double tree enteries
-au SessionLoadPost * lua require'nvim-tree.lib'.change_dir("..")
-au SessionLoadPost * lua require'nvim-tree.lib'.change_dir(vim.loop.cwd())
+nnoremap <leader>n :NvimTreeToggle<CR>
+"hack to fix double/incorrect tree entries when loading session from startify home window
+"probably a timing issue
+au User StartifyReady lua require'nvim-tree.lib'.change_dir(vim.loop.cwd())

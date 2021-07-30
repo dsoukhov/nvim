@@ -15,6 +15,7 @@ let g:startify_bookmarks = [
 
 let g:startify_skiplist = [ 'COMMIT_EDITMSG' ]
 let g:startify_session_remove_lines = ['NvimTree']
+let g:startify_session_before_save = [ 'NvimTreeClose', 'LspStop' ]
 let g:startify_session_autoload = 1
 let g:startify_change_to_vcs_root = 0
 let g:startify_change_to_dir = 0
@@ -22,4 +23,3 @@ let g:startify_session_persistence = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_enable_special = 0
 let g:startify_session_sort = 1
-let g:startify_session_before_save = [ 'NvimTreeClose' ]
