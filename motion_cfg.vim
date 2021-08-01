@@ -1,6 +1,6 @@
 lua << EOF
 require'hop'.setup()
---require'clipmenu-nvim'.setup()
+require'clipmenu-nvim'.setup({cache_dir = "/home/daniel/.cache/clipmenu.6.daniel"})
 EOF
 "word motion config
 nmap f <cmd> lua require("hop").hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<CR>
@@ -29,5 +29,5 @@ xmap yS <Plug>VgSurround
 "clipmenu-yank config
 nnoremap <leader>y :lua require'clipmenu-nvim'.clipmenu_telescope_BC()<CR>
 nnoremap <leader>Y :lua require'clipmenu-nvim'.clipmenu_telescope_AC()<CR>
-" nmap ]p :lua require'clipmenu-nvim'.clipmenu_yankring_cycle_forward()<CR>
-" nmap [p :lua require'clipmenu-nvim'.clipmenu_yankring_cycletest_back()<CR>
+nmap ]p :lua require'clipmenu-nvim'.clipmenu_yankring_cycle_forward()<CR>
+nmap [p :lua require'clipmenu-nvim'.clipmenu_yankring_cycle_back()<CR>
