@@ -21,7 +21,6 @@ set diffopt+=vertical
 "column config
 set signcolumn=auto:3
 set isfname+=@-@
-"set termguicolors
 "set scroll offset
 set scrolloff=6
 " Better indenting
@@ -77,6 +76,12 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 " <Shift-V>ds to remove trailing whitespace on line
 map ds :s/\s*$//g<cr>:noh<cr>
 
+nnoremap Y y$
+
+"move text
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+
 " toggle spellcheck
 nn <leader>` :setlocal spell! spell?<CR>
 " turn spellcheck on for gitcommits
@@ -87,8 +92,6 @@ nnoremap <CR> :noh<CR><CR>
 
 " replace current selection with buffer
 vmap r "_dP
-"" Search highlight color
-"hi Search cterm=NONE ctermfg=black ctermbg=yellow
 
 " map select last pasted as gp
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
