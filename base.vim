@@ -37,6 +37,8 @@ set hidden
 set noswapfile
 " set highlight search
 set hlsearch
+set ignorecase
+set smartcase
 " set vertical col
 set colorcolumn=80
 set cursorline
