@@ -15,7 +15,7 @@ let g:startify_bookmarks = [
 
 let g:startify_skiplist = [ 'COMMIT_EDITMSG' ]
 let g:startify_session_remove_lines = ['NvimTree']
-let g:startify_session_before_save = [ 'NvimTreeClose', 'LspStop' ]
+let g:startify_session_before_save = [ 'NvimTreeClose', 'LspStop', "call writefile([getcwd(),''], '/tmp/cd_vim', 'b')"]
 let g:startify_session_autoload = 1
 let g:startify_change_to_vcs_root = 0
 let g:startify_change_to_dir = 0

@@ -159,6 +159,7 @@ function M.sessions_search()
         local entry = action_state.get_selected_entry()
         actions.close(selection)
         vim.api.nvim_command("SLoad "..entry.value)
+        utils.get_os_command_output({"sh", "-c", "rm /tmp/cd_vim"})
       end)
     return true
     end
