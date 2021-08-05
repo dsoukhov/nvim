@@ -9,12 +9,10 @@ nmap F <cmd> lua require("hop").hint_char1({direction = require'hop.hint'.HintDi
 vmap F <cmd> lua require("hop").hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<CR>
 nmap <C-f> <cmd> lua require'hop'.hint_words()<CR>
 vmap <C-f> <cmd> lua require'hop'.hint_words()<CR>
-"C-'
-nmap ^[[39;5u <cmd> lua require'hop'.hint_lines_skip_whitespace()<CR>
-vmap ^[[39;5u <cmd> lua require'hop'.hint_lines_skip_whitespace()<CR>
-"C-/
-nmap  <cmd> lua require'hop'.hint_patterns()<CR>
-vmap  <cmd> lua require'hop'.hint_patterns()<CR>
+nmap <C-'> <cmd> lua require'hop'.hint_lines_skip_whitespace()<CR>
+vmap <C-'> <cmd> lua require'hop'.hint_lines_skip_whitespace()<CR>
+map <C-\> <cmd> lua require'hop'.hint_patterns()<CR>
+vmap <C-\> <cmd> lua require'hop'.hint_patterns()<CR>
 
 let g:wordmotion_nomap = 1
 nmap w          <Plug>WordMotion_w

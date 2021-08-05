@@ -84,6 +84,10 @@ nnoremap Y y$
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
 
+"map relevant st termkeys for use in vim
+map ^[[39;5u <C-'>
+map  <C-\>
+
 " toggle spellcheck
 nn <leader>` :setlocal spell! spell?<CR>
 " turn spellcheck on for gitcommits

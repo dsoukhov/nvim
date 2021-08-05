@@ -52,7 +52,6 @@ function _ClipmenuYankringCycle(direction)
   local list = _GetClipmenuList()
   local prevlines = vim.g.clipmenu_cache_lines
   local curlines = _GetCacheLineCount()
-  print(prevlines, curlines)
   if curpos == nil or prevlines == nil or prevlines ~= curlines then
     print("New entry found. Resetting yankring position.")
     vim.api.nvim_set_var("clipmenu_cache_lines", curlines)
@@ -69,7 +68,7 @@ function _ClipmenuYankringCycle(direction)
   local prev_paste_mark_end = vim.api.nvim_buf_get_mark(0, "]")
   if prev_paste_mark_end[1] <= vim.fn.getwininfo(vim.api.nvim_get_current_win())[1].botline then
     vim.cmd("normal "..'`[' .. prev_paste_sel .. '`]'.. "c")
-    vim.api.nvim_put(to_paste, "", false, true)
+    vim.api.nvim_put(to_paste, "", true, true)
   else
     print("Previous paste not found.")
   end
