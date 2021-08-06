@@ -129,7 +129,16 @@ local function make_config()
   } return {
     -- enable snippet support
     capabilities = capabilities,
-    on_attach = on_attach
+    -- enable signature support
+    on_attach = function(client, bufnr)
+        require "lsp_signature".on_attach({
+          bind = true, -- This is mandatory, otherwise border config won't get registered.
+          hint_prefix = "",
+          handler_opts = {
+            border = "single"
+          },
+        })
+    end
   }
 end
 

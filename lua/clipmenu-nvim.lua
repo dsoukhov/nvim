@@ -15,12 +15,6 @@ function _GetClipmenuList()
   return list
 end
 
-function _GetCacheLineCount()
-  local cmd = {"sh", "-c",
-    string.format("ls %s | wc -l" , vim.api.nvim_get_var("clipmenu_cache_dir"))}
-  return utils.get_os_command_output(cmd)[1]
-end
-
 --escape lua special chars for use in external bash commands
 function _StringCleanup(str)
   str = str:gsub("\\", "\\\\")
@@ -49,20 +43,20 @@ end
 
 function _ClipmenuYankringCycle(direction)
   local curpos = vim.g.clipmenu_pos
-  local list = _GetClipmenuList()
   local prevlines = vim.g.clipmenu_cache_lines
-  local curlines = _GetCacheLineCount()
+  local entries = _GetClipmenuList()
+  local curlines = #entries
   if curpos == nil or prevlines == nil or prevlines ~= curlines then
     print("New entry found. Resetting yankring position.")
     vim.api.nvim_set_var("clipmenu_cache_lines", curlines)
     curpos = 1
   else
-    curpos = (curpos + direction) % #list
+    curpos = (curpos + direction) % curlines
     if curpos == 0 then
-      curpos = #list
+      curpos = curlines
     end
   end
-  local to_paste = _GetClipmenuEntry(_StringCleanup(list[curpos]), false)
+  local to_paste = _GetClipmenuEntry(_StringCleanup(entries[curpos]), false)
   vim.api.nvim_set_var("clipmenu_pos", curpos)
   local prev_paste_sel = vim.fn.strpart(vim.fn.getregtype(), 0 , 1)
   local prev_paste_mark_end = vim.api.nvim_buf_get_mark(0, "]")
@@ -74,7 +68,7 @@ function _ClipmenuYankringCycle(direction)
   end
 end
 
-function _ClipmenuTelescope(aftercursor)
+function _ClipmenuTelescope(aftercursor, isVisual)
   local title = "yanks"
   if aftercursor then
     title = "Yanks"
@@ -97,6 +91,9 @@ function _ClipmenuTelescope(aftercursor)
         local chosen_line = _StringCleanup(action_state.get_selected_entry().value)
         local result = _GetClipmenuEntry(chosen_line, true)
         actions.close(selected)
+        if isVisual then
+          vim.cmd("normal gv c")
+        end
         vim.api.nvim_put(result, "", aftercursor, true)
       end)
       return true
@@ -114,6 +111,10 @@ end
 
 function M.clipmenu_yankring_cycle_forward()
   _ClipmenuYankringCycle(1)
+end
+
+function M.clipmenu_telescope_VM()
+  _ClipmenuTelescope(true, true)
 end
 
 function M.clipmenu_telescope_AC()

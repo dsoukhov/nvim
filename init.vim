@@ -5,6 +5,7 @@ Plug 'airblade/vim-rooter'
 Plug 'mhinz/vim-startify', {'do':'git fetch origin pull/482/head:pr-482 && git checkout pr-482'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall', {'branch':'main'}
+Plug 'ray-x/lsp_signature.nvim'
 Plug 'dsoukhov/lightline-bufferline'
 Plug 'lambdalisue/suda.vim'
 Plug 'machakann/vim-highlightedyank'
@@ -56,3 +57,4 @@ source $HOME/.config/nvim/lightline_cfg.vim
 source $HOME/.config/nvim/searcher_cfg.vim
 source $HOME/.config/nvim/dap.vim
 source $HOME/.config/nvim/runner_cfg.vim
+source $HOME/.config/nvim/searcher_cfg.vim
