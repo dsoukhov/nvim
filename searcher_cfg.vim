@@ -1,5 +1,4 @@
 " set telescope bindings
-
 lua << EOF
 -- close on single exit
 local actions = require('telescope.actions')

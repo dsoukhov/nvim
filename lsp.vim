@@ -34,10 +34,10 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
   -- Mappings.
   local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>Telescope lsp_definitions<CR>', opts)
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
   buf_set_keymap('n', 'gdt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gm', '<cmd>Telescope lsp_implementations<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
   buf_set_keymap('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -54,6 +54,13 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>d', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
   --buf_set_keymap('n', '<space>l', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
+  require "lsp_signature".on_attach({
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    hint_prefix = "",
+    handler_opts = {
+      border = "single"
+    },
+  })
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
@@ -127,18 +134,9 @@ local function make_config()
       'additionalTextEdits',
     }
   } return {
-    -- enable snippet support
     capabilities = capabilities,
     -- enable signature support
-    on_attach = function(client, bufnr)
-        require "lsp_signature".on_attach({
-          bind = true, -- This is mandatory, otherwise border config won't get registered.
-          hint_prefix = "",
-          handler_opts = {
-            border = "single"
-          },
-        })
-    end
+    on_attach = on_attach
   }
 end
 
@@ -154,9 +152,6 @@ local function setup_servers()
       config.settings = clangd_settings
     elseif server == "lua" then
       config.settings = lua_settings
-      nvim_lsp[server].hover = function()
-        vim.lsp.buf.hover()
-      end
     end
     nvim_lsp[server].setup(config)
   end
