@@ -13,7 +13,6 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'windwp/nvim-autopairs'
-Plug 'wellle/targets.vim'
 Plug 'windwp/nvim-ts-autotag', {'branch':'main'}
 Plug 'AndrewRadev/whitespaste.vim'
 Plug 'sickill/vim-pasta'

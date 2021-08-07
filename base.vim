@@ -79,14 +79,17 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 map ds :s/\s*$//g<cr>:noh<cr>
 
 nnoremap Y y$
-
-"move text
+nnoremap gy gg"+yG
+ 
+" move text
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
 
-"map relevant st termkeys for use in vim
+" map relevant st termkeys for use in vim
 map ^[[39;5u <C-'>
 map  <C-\>
+map ^[[70;6u <C-S-F>
+map ^[[59;5u <C-;>
 
 " toggle spellcheck
 nn <leader>` :setlocal spell! spell?<CR>
