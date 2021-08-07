@@ -38,16 +38,17 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
   buf_set_keymap('n', 'gdt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gm', '<cmd>Telescope lsp_implementations<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
   buf_set_keymap('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'gca', '<cmd>Telescope lsp_code_actions<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  --buf_set_keymap('n', '<space>H', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  --buf_set_keymap('n', 'H', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<leader>D', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
@@ -140,7 +141,7 @@ local function make_config()
   }
 end
 
--- lsp-install lua, java, cpp, bash, json, cmake, latex, python, ruby, rust, vim
+-- lsp-install lua, java, cpp, json, cmake, latex, python, ruby, rust, vim
 -- yaml, vim, typescript, docker, angular, dockerfile, html, php
 local function setup_servers()
   --nvim-lspinstall setup for autoinstall languages
@@ -155,8 +156,27 @@ local function setup_servers()
     end
     nvim_lsp[server].setup(config)
   end
+  local null_cfg = make_config()
+  nvim_lsp["null-ls"].setup(null_cfg)
 end
 
+-- null-ls cfg
+local null_ls = require("null-ls")
+null_ls.config({
+  sources = {
+      --add sources here
+      --require("null-ls.helpers").conditional(function(utils)
+      --  return utils.root_has_file(".eslintrc.js") and null_ls.builtins.formatting.eslint_d or null_ls.builtins.formatting.prettierd
+      --end),
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.eslint_d,
+      null_ls.builtins.diagnostics.eslint.with({
+        command = "eslint_d"
+      }),
+      null_ls.builtins.formatting.shfmt,
+      null_ls.builtins.diagnostics.shellcheck,
+  }
+})
 setup_servers()
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
@@ -164,49 +184,4 @@ require'lspinstall'.post_install_hook = function ()
   setup_servers() -- reload installed servers
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
-
--- efm config
---local vint = require "efm/vint"
---local luafmt = require "efm/luafmt"
---local golint = require "efm/golint"
---local flake8 = require "efm/flake8"
---local rustfmt = require "efm/rustfmt"
---local prettier = require "efm/prettier"
---local eslint = require "efm/eslint"
---local shellcheck = require "efm/shellcheck"
---
---require "lspconfig".efm.setup {
---  init_options = {documentFormatting = true},
---  settings = {
---    rootMarkers = {".git/"},
---    languages = {
---      python = {flake8},
---      lua = {luafmt},
---      go = {golint},
---      vim = {vint},
---      rust = {rustfmt},
---      typescript = {eslint},
---      javascript = {eslint},
---      typescriptreact = {eslint},
---      javascriptreact = {eslint},
---      yaml = {prettier},
---      json = {prettier},
---      html = {prettier},
---      scss = {prettier},
---      css = {prettier},
---      markdown = {prettier},
---      sh = {shellcheck},
---    }
---  }
---}
---
 EOF
-"set lsp colors
- " function! SetLSPHighlights()
- "     highlight LspDiagnosticsUnderlineError guifg=#EB4917 gui=undercurl
- "     highlight LspDiagnosticsUnderlineWarning guifg=#EBA217 gui=undercurl
- "     highlight LspDiagnosticsUnderlineInformation guifg=#17D6EB, gui=undercurl
- "     highlight LspDiagnosticsUnderlineHint guifg=#17EB7A gui=undercurl
- " endfunction
-
-" autocmd ColorScheme * call SetLSPHighlights()
