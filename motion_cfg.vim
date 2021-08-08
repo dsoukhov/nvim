@@ -28,6 +28,8 @@ omap b          <Plug>WordMotion_b
 omap e          <Plug>WordMotion_e
 omap aw         <Plug>WordMotion_aw
 omap iw         <Plug>WordMotion_iw
+vmap aw         <Plug>WordMotion_aw
+vmap iw         <Plug>WordMotion_iw
 cmap <C-R><C-W> <Plug>WordMotion_<C-R><C-W>
 
 "surround config

@@ -80,7 +80,7 @@ map ds :s/\s*$//g<cr>:noh<cr>
 
 nnoremap Y y$
 nnoremap gy gg"+yG
- 
+
 " move text
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
