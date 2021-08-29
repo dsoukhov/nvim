@@ -14,14 +14,12 @@ Plug 'kabouzeid/nvim-lspinstall', {'branch':'main'}
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim', {'branch':'main'}
 Plug 'dsoukhov/lightline-bufferline'
-Plug 'lambdalisue/suda.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag', {'branch':'main'}
 Plug 'AndrewRadev/whitespaste.vim'
-Plug 'sickill/vim-pasta'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim', {'branch':'main'}
