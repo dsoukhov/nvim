@@ -48,9 +48,8 @@ function! LightlineGitChanges()
 endfunction
 
 set showtabline=2
-"let g:lightline#bufferline#filename_modifier = ':t'
+let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#show_number  = 2
-let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#clickable = 1
 let g:lightline#bufferline#filter_by_tabpage = 1
 let g:lightline.component_raw = {'buffers': 1}

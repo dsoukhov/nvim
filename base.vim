@@ -67,9 +67,24 @@ map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
 
+"set undodir
+let s:undodir = "/tmp/.undodir_" . $USER
+if !isdirectory(s:undodir)
+    call mkdir(s:undodir, "", 0700)
+endif
+let &undodir=s:undodir
+set undofile
+
 " Better indenting
 vnoremap < <gv
 vnoremap > >gv
+
+" +/- to increment/dec
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+" dot repeat visual sel
+xnoremap . :norm.<CR>
 
 " dir keys respect line wraps
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -80,6 +95,12 @@ map ds :s/\s*$//g<cr>:noh<cr>
 
 nnoremap Y y$
 nnoremap gy gg"+yG
+" make change ops go to black hole
+nnoremap c "_c
+nnoremap C "_C
+
+" execute q reg macro over selection
+xnoremap Q :'<,'>:normal @q<CR>
 
 " move text
 vnoremap K :m '<-2<CR>gv=gv

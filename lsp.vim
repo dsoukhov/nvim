@@ -59,7 +59,8 @@ local on_attach = function(client, bufnr)
     bind = true, -- This is mandatory, otherwise border config won't get registered.
     hint_prefix = "",
     handler_opts = {
-      border = "single"
+      border = "single",
+      floating_window_above_cur_line = true
     },
   })
   -- Set autocommands conditional on server_capabilities
@@ -80,8 +81,8 @@ local clangd_settings = {
     rootPatterns = { "compile_commands.json", ".git", "Makefile" },
     args = {
       "-j=6",
-      --"--limit-results=0",
-      --"--cross-file-rename",
+      "--limit-results=0",
+      "--cross-file-rename",
       --"--compile_args_from=filesystem",
       --"--all-scopes-completion",
       --"--background-index",

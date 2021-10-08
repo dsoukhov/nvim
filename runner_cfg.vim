@@ -16,7 +16,7 @@ noremap <silent><F1> :lua require('telescope_cfg').tester_templates()<CR>
 noremap <silent><F2> :AsyncTask test-run<CR>
 noremap <silent><F3> :AsyncTask test-debug<CR>
 noremap <silent><F4> :AsyncTask test-attach<CR>
-noremap <silent><leader>x :lua require'dap'.repl.close();require'dap'.disconnect();require'dap'.stop();<CR>:AsyncStop<CR>:silent! :bd! /bin/sh<CR>:silent! :bd! repl<CR>:ccl<CR>
+noremap <silent><leader>x :lua require'dap'.repl.close();require'dap'.disconnect();require'dap'.close();<CR>:AsyncStop<CR>:silent! :bd! /bin/sh<CR>:silent! :bd! repl<CR>:ccl<CR>
 
 "prevent infinte reloading of Projbuild
 if exists('*Projbuild')

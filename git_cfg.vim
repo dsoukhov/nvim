@@ -1,4 +1,4 @@
-nmap <leader>gb :Git blame<CR>
+"nmap <leader>gb :Git blame<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 nmap <leader>gd :Gdiff master<CR>
@@ -14,8 +14,8 @@ lua << EOF
 
 require('gitsigns').setup {
   signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
     delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
     topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
     changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
@@ -36,11 +36,15 @@ require('gitsigns').setup {
     ['n <leader>ghr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
     ['v <leader>ghr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
     ['n <leader>ghR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    --['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+    ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
+    ['n <leader>gcb'] = '<cmd>lua require"gitsigns".change_base(vim.fn.input("base: "))<CR>',
+    ['n <leader>gdt'] = '<cmd>lua require"gitsigns".diffthis(vim.fn.input(": "))<CR>',
 
     -- Text objects
     ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+    ['o ah'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+    ['x ah'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
   },
   watch_index = {
     interval = 1000,

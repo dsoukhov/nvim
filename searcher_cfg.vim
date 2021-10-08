@@ -49,6 +49,7 @@ nnoremap <leader>t :lua require'telescope_cfg'.search_all_files()<CR>
 nnoremap <Leader>h :Telescope command_history<CR>
 nnoremap <Leader>?? :Telescope help_tags<CR>
 nnoremap <Leader>? :Telescope man_pages<CR>
+nnoremap <Leader>' :Telescope marks<CR>
 nnoremap <Leader>gc :lua require'telescope_cfg'.git_cbuf()<CR>
 nnoremap <Leader>gC :lua require'telescope_cfg'.git_checkout()<CR>
 nnoremap <Leader>gl :lua require'telescope_cfg'.git_log()<CR>
