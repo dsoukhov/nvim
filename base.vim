@@ -51,6 +51,7 @@ au BufEnter * set fo-=c fo-=r fo-=o
 set sidescrolloff=999
 set scrolloff=999
 
+set splitright
 " remap split navigations
 nnoremap <C-j> <C-W><C-J>
 nnoremap <C-k> <C-W><C-K>

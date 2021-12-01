@@ -75,6 +75,26 @@ local on_attach = function(client, bufnr)
   end
 end
 
+local null_ls = require("null-ls")
+null_ls.config({
+  sources = {
+      --add sources here
+      --require("null-ls.helpers").conditional(function(utils)
+      --  return utils.root_has_file(".eslintrc.js") and null_ls.builtins.formatting.eslint_d or null_ls.builtins.formatting.prettierd
+      --end),
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.eslint_d,
+      null_ls.builtins.diagnostics.eslint.with({
+        command = "eslint_d"
+      }),
+      null_ls.builtins.formatting.shfmt,
+      null_ls.builtins.diagnostics.shellcheck,
+  }
+})
+require("lspconfig")["null-ls"].setup({
+    on_attach = my_custom_on_attach,
+})
+
 local clangd_settings = {
   clangd = {
     filetypes = { "c", "cpp" },
@@ -126,63 +146,31 @@ local lua_settings = {
   }
 }
 
-local function make_config()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-      'documentation',
-      'detail',
-      'additionalTextEdits',
+local lsp_installer = require("nvim-lsp-installer")
+
+lsp_installer.settings({
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
     }
-  } return {
-    capabilities = capabilities,
-    -- enable signature support
-    on_attach = on_attach
-  }
-end
-
--- lsp-install lua, java, cpp, json, cmake, latex, python, ruby, rust, vim
--- yaml, vim, typescript, docker, angular, dockerfile, html, php
-local function setup_servers()
-  --nvim-lspinstall setup for autoinstall languages
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    local config = make_config()
-    if server == "cpp" then
-      config.settings = clangd_settings
-    elseif server == "lua" then
-      config.settings = lua_settings
-    end
-    nvim_lsp[server].setup(config)
-  end
-  local null_cfg = make_config()
-  nvim_lsp["null-ls"].setup(null_cfg)
-end
-
--- null-ls cfg
-local null_ls = require("null-ls")
-null_ls.config({
-  sources = {
-      --add sources here
-      --require("null-ls.helpers").conditional(function(utils)
-      --  return utils.root_has_file(".eslintrc.js") and null_ls.builtins.formatting.eslint_d or null_ls.builtins.formatting.prettierd
-      --end),
-      null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.eslint_d,
-      null_ls.builtins.diagnostics.eslint.with({
-        command = "eslint_d"
-      }),
-      null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.diagnostics.shellcheck,
-  }
 })
-setup_servers()
 
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    -- (optional) Customize the options passed to the server
+    if server.name == "clangd" then
+         opts=clangd_settings
+    end
+    if server.name == "sumneko_lua" then
+         opts=lua_settings
+    end
+
+    -- This setup() function is exactly the same as lspconfig's setup function.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(opts)
+end)
+
 EOF
