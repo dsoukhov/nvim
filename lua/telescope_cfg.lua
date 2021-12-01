@@ -108,20 +108,32 @@ function M.git_checkout()
   }
 end
 
+function Git_results(selection, action)
+  local entry = action_state.get_selected_entry()
+  actions.close(selection)
+  local project_root = vim.fn.getcwd()
+  local cmd = {"git", "log", entry.value, "-n", "1", "--format=format:%H", '--', '.'}
+  local results = utils.get_os_command_output(cmd, project_root)[1]
+  if results then
+    local difffile = "fugitive://"..project_root.."/.git//"..results
+    if difffile then
+      vim.api.nvim_command(action..difffile)
+    end
+  end
+end
+
 function M.git_log()
   require('telescope.builtin').git_commits {
   prompt_title = "Git Log",
   attach_mappings = function()
     actions.select_default:replace(function(selection)
-      local entry = action_state.get_selected_entry()
-      actions.close(selection)
-      local project_root = vim.fn.getcwd()
-      local cmd = {"git", "log", entry.value, "-n", "1", "--format=format:%H", '--', '.'}
-      local results = utils.get_os_command_output(cmd, project_root)[1]
-      if results then
-        local difffile = "fugitive://"..project_root.."/.git//"..results
-        vim.api.nvim_command("e "..difffile)
-      end
+        Git_results(selection, "split ")
+    end)
+    actions.select_horizontal:replace(function(selection)
+        Git_results(selection, "split ")
+    end)
+    actions.select_vertical:replace(function(selection)
+        Git_results(selection, "vsplit ")
     end)
     return true
   end
@@ -133,15 +145,13 @@ function M.git_cbuf()
   prompt_title = "Git buffer commits",
   attach_mappings = function()
     actions.select_default:replace(function(selection)
-      local entry = action_state.get_selected_entry()
-      actions.close(selection)
-      local project_root = vim.fn.getcwd()
-      local cmd = {"git", "log", entry.value, "-n", "1", "--format=format:%H", '--', '.'}
-      local results = utils.get_os_command_output(cmd, project_root)[1]
-      if results then
-        local difffile = "fugitive://"..project_root.."/.git//"..results
-        vim.api.nvim_command("e "..difffile)
-      end
+        Git_results(selection, "split ")
+    end)
+    actions.select_horizontal:replace(function(selection)
+        Git_results(selection, "split ")
+    end)
+    actions.select_vertical:replace(function(selection)
+        Git_results(selection, "vsplit ")
     end)
     return true
   end
