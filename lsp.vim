@@ -75,25 +75,22 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local null_ls = require("null-ls")
-null_ls.config({
-  sources = {
-      --add sources here
-      --require("null-ls.helpers").conditional(function(utils)
-      --  return utils.root_has_file(".eslintrc.js") and null_ls.builtins.formatting.eslint_d or null_ls.builtins.formatting.prettierd
-      --end),
-      null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.eslint_d,
-      null_ls.builtins.diagnostics.eslint.with({
-        command = "eslint_d"
-      }),
-      null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.diagnostics.shellcheck,
+local function make_config()
+   local capabilities = vim.lsp.protocol.make_client_capabilities()
+   capabilities.textDocument.completion.completionItem.snippetSupport = true
+   capabilities.textDocument.completion.completionItem.resolveSupport = {
+     properties = {
+       'documentation',
+       'detail',
+       'additionalTextEdits',
+     },
+  } 
+return {
+    capabilities = capabilities,
+    -- enable signature support
+    on_attach = on_attach
   }
-})
-require("lspconfig")["null-ls"].setup({
-    on_attach = my_custom_on_attach,
-})
+end
 
 local clangd_settings = {
   clangd = {
@@ -134,20 +131,39 @@ local lua_settings = {
         }, {}
       ),
     },
-
+    telemetry = {
+      enable = false,
+    },
     workspace = {
       maxPreload = 5000,
       preloadFileSize = 5000,
       library = {
         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
         [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        [vim.fn.expand('~/.config/nvim/plugged')] = true,
       },
     },
   }
 }
 
-local lsp_installer = require("nvim-lsp-installer")
+local null_ls = require("null-ls")
+null_ls.config({
+  sources = {
+      --add sources here
+      --require("null-ls.helpers").conditional(function(utils)
+      --  return utils.root_has_file(".eslintrc.js") and null_ls.builtins.formatting.eslint_d or null_ls.builtins.formatting.prettierd
+      --end),
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.eslint_d,
+      null_ls.builtins.diagnostics.eslint.with({
+        command = "eslint_d"
+      }),
+      null_ls.builtins.formatting.shfmt,
+      null_ls.builtins.diagnostics.shellcheck,
+  }
+})
 
+local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.settings({
     ui = {
         icons = {
@@ -159,18 +175,21 @@ lsp_installer.settings({
 })
 
 lsp_installer.on_server_ready(function(server)
-    local opts = {}
+    local opts = make_config()
     -- (optional) Customize the options passed to the server
     if server.name == "clangd" then
-         opts=clangd_settings
+         opts.settings=clangd_settings
     end
     if server.name == "sumneko_lua" then
-         opts=lua_settings
+         opts.settings=lua_settings
     end
-
     -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     server:setup(opts)
+    vim.cmd [[ do User LspAttachBuffers ]]
 end)
 
+require("lspconfig")["null-ls"].setup(make_config())
+
 EOF
+
