@@ -51,12 +51,16 @@ au BufEnter * set fo-=c fo-=r fo-=o
 set sidescrolloff=999
 set scrolloff=999
 
+" split remaps
 set splitright
-" remap split navigations
 nnoremap <C-j> <C-W><C-J>
 nnoremap <C-k> <C-W><C-K>
 nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
+nnoremap <C-w>h 30<C-w><
+nnoremap <C-w>l 30<C-w>>
+nnoremap <C-w>j 10<C-W>-
+nnoremap <C-w>k 10<C-W>+
 
 " Disable help
 map <F1> <Nop>
@@ -126,3 +130,15 @@ vmap r "_dP
 
 " map select last pasted as gp
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+" quickfix toggle
+function! ToggleQuickfix()
+  let l:nr =  winnr("$")
+  if l:nr == 1
+      copen
+  else
+      cclose
+  endif
+endfunction
+
+nnoremap <leader>q :call ToggleQuickfix()<CR>

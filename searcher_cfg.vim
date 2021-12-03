@@ -34,7 +34,7 @@ require('telescope').setup{
 }
 EOF
 
-noremap <Leader>q :Telescope quickfix<CR>
+"nnoremap <Leader>q :Telescope quickfix<CR>
 nnoremap <Leader>p :lua require'telescope_cfg'.workspace_files()<CR>
 nnoremap <Leader>g :Telescope git_files<CR>
 nnoremap <Leader>gB :Telescope git_branches<CR>
