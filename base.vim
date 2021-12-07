@@ -142,3 +142,10 @@ function! ToggleQuickfix()
 endfunction
 
 nnoremap <leader>q :call ToggleQuickfix()<CR>
+
+nmap <Leader>] :bn<CR>
+nmap <Leader>[ :bp<CR>
+
+nmap <Leader>0 :e#<CR>
+nmap <Leader>c :bw!<CR>
+nmap <Leader>w :w<CR>

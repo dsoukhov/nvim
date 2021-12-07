@@ -61,4 +61,3 @@ source $HOME/.config/nvim/lightline_cfg.vim
 source $HOME/.config/nvim/searcher_cfg.vim
 source $HOME/.config/nvim/dap.vim
 source $HOME/.config/nvim/runner_cfg.vim
-source $HOME/.config/nvim/searcher_cfg.vim

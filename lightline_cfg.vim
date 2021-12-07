@@ -2,7 +2,7 @@
 let g:lightline = {
   \ 'colorscheme': 'gruvbox_material',
   \ 'active': {
-  \   'left': [['mode', 'paste'], ['absolutepath'], ['git_status']],
+  \   'left': [['mode', 'paste'], ['absolutepath', 'modified'], ['git_status']],
   \   'right': [['lineinfo'], ['percent'], ['gitlinechanges'], ['readonly', 'lsp_warnings',
   \     'lsp_errors']]
   \ },
@@ -39,8 +39,3 @@ function! LightlineGitChanges()
   endif
   return ''
 endfunction
-
-nmap <Leader>] :bn<CR>
-nmap <Leader>[ :bp<CR>
-
-nmap <Leader>0 :e#<CR>
