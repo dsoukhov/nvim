@@ -8,12 +8,12 @@ local finders = require('telescope.finders')
 local utils = require('telescope.utils')
 
 M.project_files = function()
-  local _, retval = pcall(require'telescope.builtin'.git_files)
+  local retval = pcall(require'telescope.builtin'.git_files)
   if not retval then require'telescope.builtin'.find_files() end
 end
 
 M.symbol_doc_lookup = function()
-  local _, retval = pcall(require'telescope.builtin'.lsp_document_symbols)
+  local retval = pcall(require'telescope.builtin'.lsp_document_symbols)
   if not retval then require'telescope.builtin'.treesitter() end
 end
 

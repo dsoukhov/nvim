@@ -36,7 +36,7 @@ EOF
 
 "nnoremap <Leader>q :Telescope quickfix<CR>
 nnoremap <Leader>p :lua require'telescope_cfg'.workspace_files()<CR>
-nnoremap <Leader>g :Telescope git_files<CR>
+nnoremap <Leader>g :lua require'telescope_cfg'.project_files()<CR>
 nnoremap <Leader>gB :Telescope git_branches<CR>
 nnoremap <Leader>m :lua require'telescope_cfg'.symbol_doc_lookup()<CR>
 nnoremap <Leader>M :Telescope lsp_workspace_symbols<CR>
