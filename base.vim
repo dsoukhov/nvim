@@ -4,7 +4,7 @@ set modelines=1
 set mouse=a
 set autoread
 set clipboard=unnamedplus
-set incsearch
+set inccommand=split
 "Line nums hybrid by default
 set relativenumber
 set number

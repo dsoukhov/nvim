@@ -6,7 +6,7 @@ vim.diagnostic.config({
 })
 
 -- Use this if you want it to automatically show all diagnostics on the
--- current line in a floating window. 
+-- current line in a floating window.
 vim.cmd('autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()')
 vim.o.updatetime = 300
 

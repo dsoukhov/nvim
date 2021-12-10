@@ -28,6 +28,8 @@ require'nvim-treesitter.configs'.setup {
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["ab"] = "@block.outer",
+        ["ib"] = "@block.inner",
       }
     },
     move = {
@@ -36,18 +38,22 @@ require'nvim-treesitter.configs'.setup {
       goto_next_start = {
         ["]m"] = "@function.outer",
         ["]c"] = "@class.outer",
+        ["]b"] = "@block.outer",
       },
       goto_next_end = {
         ["]M"] = "@function.outer",
         ["]C"] = "@class.outer",
+        ["]B"] = "@block.outer",
       },
       goto_previous_start = {
         ["[m"] = "@function.outer",
         ["[c"] = "@class.outer",
+        ["[b"] = "@block.outer",
       },
       goto_previous_end = {
         ["[M"] = "@function.outer",
         ["[C"] = "@class.outer",
+        ["[B"] = "@block.outer",
       },
     },
   }
