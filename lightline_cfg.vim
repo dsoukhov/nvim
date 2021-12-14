@@ -3,7 +3,7 @@ let g:lightline = {
   \ 'colorscheme': 'gruvbox_material',
   \ 'active': {
   \   'left': [['mode', 'paste'], ['absolutepath', 'modified'], ['git_status']],
-  \   'right': [['lineinfo'], ['percent'], ['gitlinechanges'], ['readonly', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints']]
+  \   'right': [['lineinfo'], ['percent'], ['gitlinechanges'], ['readonly'], ['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints']]
   \ },
   \ 'component_type': {
   \   'readonly': 'error',
