@@ -8,7 +8,7 @@ vim.diagnostic.config({
 -- Use this if you want it to automatically show all diagnostics on the
 -- current line in a floating window.
 vim.cmd('autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()')
-vim.o.updatetime = 300
+vim.o.updatetime = 1200
 
 -- compe config
 vim.o.completeopt = "menuone,noselect"
@@ -156,23 +156,6 @@ local lua_settings = {
   }
 }
 
-local null_ls = require("null-ls")
-null_ls.config({
-  sources = {
-      --add sources here
-      --require("null-ls.helpers").conditional(function(utils)
-      --  return utils.root_has_file(".eslintrc.js") and null_ls.builtins.formatting.eslint_d or null_ls.builtins.formatting.prettierd
-      --end),
-      null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.eslint_d,
-      null_ls.builtins.diagnostics.eslint.with({
-        command = "eslint_d"
-      }),
-      null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.diagnostics.shellcheck,
-  }
-})
-
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.settings({
     ui = {
@@ -199,7 +182,22 @@ lsp_installer.on_server_ready(function(server)
     vim.cmd [[ do User LspAttachBuffers ]]
 end)
 
-require("lspconfig")["null-ls"].setup(make_config())
+local null_ls = require("null-ls")
+local opts = make_config()
+opts.sources = {
+    --add sources here
+    --require("null-ls.helpers").conditional(function(utils)
+    --  return utils.root_has_file(".eslintrc.js") and null_ls.builtins.formatting.eslint_d or null_ls.builtins.formatting.prettierd
+    --end),
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.diagnostics.eslint.with({
+      command = "eslint_d"
+    }),
+    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.diagnostics.shellcheck,
+}
+null_ls.setup(opts)
 
 EOF
 

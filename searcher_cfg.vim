@@ -41,8 +41,10 @@ nnoremap <Leader>gB :Telescope git_branches<CR>
 nnoremap <Leader>m :lua require'telescope_cfg'.symbol_doc_lookup()<CR>
 nnoremap <Leader>M :Telescope lsp_workspace_symbols<CR>
 nnoremap ; :Telescope buffers show_all_buffers=true<CR>
-nnoremap <C-;> :lua require'telescope_cfg'.fuz_buf()<CR>
+"nnoremap <C-;> :lua require'telescope_cfg'.fuz_buf()<CR>
+nnoremap <Leader>; :lua require'telescope_cfg'.fuz_buf()<CR>
 nnoremap <Leader>s :Telescope live_grep<CR>
+nnoremap <Leader>j :Telescope jumplist<CR>
 nnoremap <Leader>S :lua require'telescope_cfg'.sessions_search()<CR>
 nnoremap <leader>T :lua require'telescope_cfg'.search_only_certain_files()<CR>
 nnoremap <leader>t :lua require'telescope_cfg'.search_all_files()<CR>
