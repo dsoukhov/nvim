@@ -179,7 +179,6 @@ end
 function M.workspace_files()
   require('telescope.builtin').find_files {
     prompt_title = "Workspace",
-    path_display = {'hidden'},
     cwd = "~/workspace/"
   }
 end
@@ -187,7 +186,6 @@ end
 function M.config_files()
   require('telescope.builtin').find_files {
     prompt_title = "Config",
-    path_display = {'hidden'},
     cwd = "~/.config/"
   }
 end
