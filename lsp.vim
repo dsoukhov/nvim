@@ -5,10 +5,10 @@ vim.diagnostic.config({
   virtual_text = false, -- Turn off inline diagnostics
 })
 
--- Use this if you want it to automatically show all diagnostics on the
--- current line in a floating window.
-vim.cmd('autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()')
-vim.o.updatetime = 1200
+-- -- Use this if you want it to automatically show all diagnostics on the
+-- -- current line in a floating window. 
+-- vim.cmd('autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()')
+-- vim.o.updatetime = 300
 
 -- compe config
 vim.o.completeopt = "menuone,noselect"
@@ -63,6 +63,7 @@ local on_attach = function(client, bufnr)
   --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<leader>D', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
   buf_set_keymap('n', '<leader>d', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
+  buf_set_keymap('n', '=d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   --buf_set_keymap('n', '<space>l', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
   require "lsp_signature".on_attach({
