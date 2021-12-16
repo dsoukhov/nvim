@@ -28,14 +28,19 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring', {'branch':'main'}
 Plug 'tpope/vim-repeat'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'rafamadriz/friendly-snippets', {'branch':'main'}
 Plug 'phaazon/hop.nvim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'hrsh7th/nvim-compe'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'rafamadriz/friendly-snippets', {'branch':'main'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -56,7 +61,6 @@ source $HOME/.config/nvim/lsp.vim
 source $HOME/.config/nvim/git_cfg.vim
 source $HOME/.config/nvim/tree.vim
 source $HOME/.config/nvim/sessions_cfg.vim
-source $HOME/.config/nvim/snippets_cfg.vim
 source $HOME/.config/nvim/pairs_cfg.vim
 source $HOME/.config/nvim/lightline_cfg.vim
 source $HOME/.config/nvim/searcher_cfg.vim
