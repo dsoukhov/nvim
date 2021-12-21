@@ -12,7 +12,7 @@ local cmp = require('cmp')
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
 npairs.setup {
-  disable_filetype = { "TelescopePrompt" , "vim" },
+  disable_filetype = { "TelescopePrompt" },
   check_ts = true,
   ignored_next_char = "[%w%.]", -- will ignore alphanumeric and `.` symbol
   ts_config = {
