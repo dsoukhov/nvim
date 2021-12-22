@@ -55,6 +55,7 @@ Plug 'roxma/vim-hug-neovim-rpc'
 call plug#end()
 
 source $HOME/.config/nvim/base.vim
+source $HOME/.config/nvim/copy_paste.vim
 source $HOME/.config/nvim/motion_cfg.vim
 source $HOME/.config/nvim/colorscheme.vim
 source $HOME/.config/nvim/lsp.vim
