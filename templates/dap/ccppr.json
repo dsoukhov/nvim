@@ -1,12 +1,12 @@
 {
   "name": "ccppr",
-  "type": "vsc_ccppr",
+  "type": "ccppr_vsc",
   "request": "launch",
   "program": "${fileDirname}/${fileBasenameNoExtension}",
   "args": [],
   "cwd": "${workspaceRoot}",
   "environment": [],
-  "externalConsole": true,
+  "externalConsole": false,
   "stopAtEntry": false,
   "MIMode": "gdb"
 }

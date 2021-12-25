@@ -4,19 +4,20 @@ let g:asynctasks_extra_config = [ '~/.config/nvim/async-tasks/default.ini' ]
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 let g:asyncrun_open = 6
 
+noremap <silent><F1> :AsyncTask run-test<CR>
+noremap <silent><F2> :lua require('telescope_cfg').task_templates("Tester templates", "~/.config/nvim/templates/test", ".tasks")<CR>
+"Shift+F2
+noremap <silent><F14> :lua require('telescope_cfg').runner_configs()<CR>
+noremap <silent><F3> :AsyncTask debug-test<CR>
+noremap <silent><F4> :AsyncTask attach-test<CR>
 noremap <silent><F7> :AsyncTask project-run<cr>
-noremap <silent><F8> :lua require('telescope_cfg').runner_templates()<CR>
-noremap <silent><F9> :call Projbuild()<CR>
 "shift+F7
 noremap <silent><F19> :lua require('telescope_cfg').runner_configs()<CR>
+noremap <silent><F8> :lua require('telescope_cfg').task_templates("Runner templates", "~/.config/nvim/templates/run", ".tasks")<CR>
+noremap <silent><F9> :call Projbuild()<CR>
 "shift+F9
 noremap <silent><F21> :lua require('telescope_cfg').runner_configs()<CR>
-
-noremap <silent><F1> :lua require('telescope_cfg').tester_templates()<CR>
-noremap <silent><F2> :AsyncTask test-run<CR>
-noremap <silent><F3> :AsyncTask test-debug<CR>
-noremap <silent><F4> :AsyncTask test-attach<CR>
-noremap <silent><leader>x :lua require'dap'.repl.close();require'dap'.disconnect();require'dap'.close();<CR>:AsyncStop<CR>:silent! :bd! /bin/sh<CR>:silent! :bd! repl<CR>:ccl<CR>
+noremap <silent><F10> :lua require('telescope_cfg').task_templates("Build templates", "~/.config/nvim/templates/build", ".tasks")<CR>
 
 "prevent infinte reloading of Projbuild
 if exists('*Projbuild')

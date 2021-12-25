@@ -133,11 +133,10 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " quickfix toggle
 function! ToggleQuickfix()
-  let l:nr =  winnr("$")
-  if l:nr == 1
-      copen
+  if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
   else
-      cclose
+    cclose
   endif
 endfunction
 

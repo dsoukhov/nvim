@@ -83,10 +83,10 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = "vsnip" },
-    { name = 'nvim_lsp', max_item_count = 20 },
-    { name = 'buffer',  max_item_count = 10 },
-    { name = 'path' }, -- path completion
+    { name = 'nvim_lsp', max_item_count = 10 },
+    { name = 'buffer', max_item_count = 5 },
+    { name = "vsnip", max_item_count = 5},
+    { name = 'path', max_item_count = 5 },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

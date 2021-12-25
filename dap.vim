@@ -1,22 +1,27 @@
 lua << EOF
 local dap = require('dap')
 local dap_adapters = vim.fn.stdpath("data") .. "/dapinstall/"
+local dap_install = require("dap-install")
 
--- dap.defaults.fallback.terminal_win_cmd = ':belowright 7split new'
-dap.defaults.fallback.terminal_win_cmd = ':e new'
+dap.defaults.fallback.terminal_win_cmd = 'belowright 7split new | setlocal winfixheight | setlocal winfixwidth'
+--dap.defaults.fallback.terminal_win_cmd = ':e new'
 
---DIInstall ccppr_vsc_dbg, python_dbg, go_delve_dbg, jsnode_dbg, java_dbg
-dap.adapters.vsc_ccppr = {
+----DIInstall ccppr_vsc, python
+local dap_install = require("dap-install")
+local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
+
+for _, debugger in ipairs(dbg_list) do
+	dap_install.config(debugger)
+end
+
+dap.adapters.ccppr_vsc = {
   type = 'executable',
-  command = dap_adapters .. "ccppr_vsc_dbg/extension/debugAdapters/OpenDebugAD7"
+  command = dap_adapters .. "ccppr_vsc/extension/debugAdapters/bin/OpenDebugAD7"
 }
 
-dap.adapters.python = {
-  type = 'executable';
-  --command = 'python';
-  command = dap_adapters .. "python_dbg/bin/python",
-  args = { '-m', 'debugpy.adapter' };
-}
+dap.listeners.before["event_terminated"]["plugins-dap"] = function(session, body)
+  dap.repl.close()
+end
 
 require('telescope').load_extension('dap')
 
@@ -79,7 +84,7 @@ nnoremap <silent> <F5>  :lua require'dap_helper'.cont()<CR>
 "S-F5
 nnoremap <silent> <F17> :lua require'dap'.reverse-continue()<CR>
 nnoremap <silent> <F17> :lua require'dap'.close()<CR>
-nnoremap <silent> <F6> :lua require'telescope_cfg'.dap_templates()<CR>
+nnoremap <silent> <F6> :lua require'telescope_cfg'.task_templates("Dap templates", "~/.config/nvim/templates/dap", ".dap.json" )<CR>
 nnoremap <leader>dh :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <leader>dj :lua require'dap'.down()<CR>
 nnoremap <leader>dk :lua require'dap'.up()<CR>
@@ -97,3 +102,5 @@ nnoremap <leader>dt :lua require'dap'.threads()<CR>
 nnoremap <leader>df :Telescope dap frames<CR>
 nnoremap <leader>db :Telescope dap list_breakpoints<CR>
 nnoremap <leader>du :lua require'dapui'.toggle()<CR>
+
+noremap <silent><leader>x :lua require'dap'.repl.close();require'dap'.disconnect();require'dap'.close();<CR>:AsyncStop<CR>:silent! :bd! /bin/sh<CR>:silent! :bd! repl<CR>:ccl<CR>

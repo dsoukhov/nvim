@@ -17,17 +17,17 @@ M.symbol_doc_lookup = function()
   if not retval then require'telescope.builtin'.treesitter() end
 end
 
-function M.dap_templates()
+function M.task_templates(title, path, local_file)
   require('telescope.builtin').find_files {
-    prompt_title = "Dap templates",
+    prompt_title = title,
     path_display = {'tail'},
-    cwd = "~/.config/nvim/dap-json",
+    cwd = path,
     attach_mappings = function(prompt_bufnr)
       action_set.select:replace(function()
         local entry = action_state.get_selected_entry()
         actions.close(prompt_bufnr)
-        vim.api.nvim_command('e .dap.json')
-        vim.api.nvim_command('0r ~/.config/nvim/dap-json/'..entry.value)
+        vim.api.nvim_command('e '..local_file)
+        vim.api.nvim_command('0r '..path.."/"..entry.value)
       end)
       return true
     end
@@ -37,7 +37,7 @@ end
 function M.runner_configs()
   local source = vim.fn['asynctasks#source']("")
   local tbl = {}
-  local title = "Runner configs"
+  local title = "Task configs"
   for k, v in pairs(source) do
     table.insert(tbl, k, v[1])
   end
@@ -66,40 +66,6 @@ function M.runner_configs()
       return true
     end,
   }):find()
-end
-
-function M.tester_templates()
-  require('telescope.builtin').find_files {
-    prompt_title = "Tester templates",
-    path_display = {'tail'},
-    cwd = "~/.config/nvim/tester/templates",
-    attach_mappings = function(prompt_bufnr)
-      action_set.select:replace(function()
-        local entry = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        vim.api.nvim_command('e .tasks')
-        vim.api.nvim_command('0r ~/.config/nvim/tester/templates/'..entry.value)
-      end)
-      return true
-    end
-  }
-end
-
-function M.runner_templates()
-  require('telescope.builtin').find_files {
-    prompt_title = "Runner templates",
-    path_display = {'tail'},
-    cwd = "~/.config/nvim/async-tasks/templates",
-    attach_mappings = function(prompt_bufnr)
-      action_set.select:replace(function()
-        local entry = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        vim.api.nvim_command('e .tasks')
-        vim.api.nvim_command('0r ~/.config/nvim/async-tasks/templates/'..entry.value)
-      end)
-      return true
-    end
-  }
 end
 
 function M.git_checkout()
@@ -179,13 +145,6 @@ function M.workspace_files()
   require('telescope.builtin').find_files {
     prompt_title = "Workspace",
     cwd = "~/workspace/"
-  }
-end
-
-function M.config_files()
-  require('telescope.builtin').find_files {
-    prompt_title = "Config",
-    cwd = "~/.config/"
   }
 end
 
