@@ -16,6 +16,8 @@ map <C-\> <cmd> lua require'hop'.hint_patterns()<CR>
 vmap <C-\> <cmd> lua require'hop'.hint_patterns()<CR>
 
 let g:wordmotion_nomap = 1
+let g:wordmotion_extra = ['^#define\>', '^#ifdef\>']
+
 nmap w          <Plug>WordMotion_w
 nmap b          <Plug>WordMotion_b
 nmap e          <Plug>WordMotion_e

@@ -17,6 +17,7 @@ let g:startify_skiplist = [ 'COMMIT_EDITMSG' ]
 let g:startify_session_remove_lines = []
 let g:startify_session_before_save = [ 'NvimTreeClose' ]
 let g:startify_session_autoload = 1
+let g:startify_relative_path = 0
 let g:startify_change_to_vcs_root = 0
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
