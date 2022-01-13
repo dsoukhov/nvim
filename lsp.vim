@@ -14,7 +14,7 @@ vim.diagnostic.config({
 
  -- Use this if you want it to automatically show all diagnostics on the
  -- current line in a floating window.
-vim.cmd('autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()')
+vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float()')
 vim.o.updatetime = 200
 
 -- Setup nvim-cmp.
