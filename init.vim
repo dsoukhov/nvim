@@ -61,9 +61,9 @@ source $HOME/.config/nvim/colorscheme.vim
 source $HOME/.config/nvim/lsp.vim
 source $HOME/.config/nvim/git_cfg.vim
 source $HOME/.config/nvim/tree.vim
-source $HOME/.config/nvim/sessions_cfg.vim
 source $HOME/.config/nvim/pairs_cfg.vim
 source $HOME/.config/nvim/lightline_cfg.vim
 source $HOME/.config/nvim/searcher_cfg.vim
+source $HOME/.config/nvim/sessions_cfg.vim
 source $HOME/.config/nvim/dap.vim
 source $HOME/.config/nvim/runner_cfg.vim
