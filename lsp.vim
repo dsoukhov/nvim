@@ -92,8 +92,9 @@ cmp.setup({
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   experimental = {
     ghost_text = false,
@@ -104,7 +105,8 @@ cmp.setup({
 cmp.setup.cmdline('/', {
   sources = {
     { name = 'buffer', keyword_length = 3 },
-  }
+  },
+  mapping = cmp.mapping.preset.cmdline({}),
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).

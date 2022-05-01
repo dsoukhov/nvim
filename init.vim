@@ -45,7 +45,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'mfussenegger/nvim-dap'
-Plug 'Pocco81/DAPInstall.nvim', {'branch':'main'}
+Plug 'Pocco81/DAPInstall.nvim', {'branch':'main', 'commit':'24923c3819a450a772bb8f675926d530e829665f'}
 Plug 'nvim-telescope/telescope-dap.nvim'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rcarriga/nvim-dap-ui'
