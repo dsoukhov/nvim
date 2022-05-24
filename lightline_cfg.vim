@@ -2,7 +2,7 @@
 let g:lightline = {
   \ 'colorscheme': 'gruvbox_material',
   \ 'active': {
-  \   'left': [['mode', 'paste'], ['absolutepath', 'modified'], ['git_status']],
+  \   'left': [['mode', 'paste'], ['absolutepath', 'modified'], ['git_status'], ['gps']],
   \   'right': [['lineinfo'], ['percent'], ['gitlinechanges'], ['readonly'], ['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints']]
   \ },
   \ 'component_type': {
@@ -14,6 +14,7 @@ let g:lightline = {
   \   'linter_ok': 'right',
   \ },
   \ 'component_function': {
+  \   'gps': 'NvimGps',
   \   'workspace': 'LightlineWorkspace',
   \   'gitlinechanges': 'LightlineGitChanges',
   \   'git_status': 'LightlineGitStatus',
@@ -24,6 +25,11 @@ let g:lightline = {
   \   'linter_ok': 'lightline#lsp#ok',
   \ }
 \ }
+
+func! NvimGps() abort
+  return luaeval("require'nvim-gps'.is_available()") ?
+    \ luaeval("require'nvim-gps'.get_location()") : ''
+endf
 
 function! LightlineWorkspace()
     return pathshorten(getcwd())

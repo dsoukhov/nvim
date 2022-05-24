@@ -207,6 +207,7 @@ vim.g.nvim_tree_icons = {
         symlink_open = "",
     },
 }
+require("nvim-gps").setup()
 EOF
 
 highlight IndentBlanklineContextChar guifg=#EBA217 gui=nocombine

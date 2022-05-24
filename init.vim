@@ -28,10 +28,11 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring', {'branch':'main'}
 Plug 'tpope/vim-repeat'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'phaazon/hop.nvim'
+Plug 'phaazon/hop.nvim', {'branch':'v1'}
 Plug 'chaoren/vim-wordmotion'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'SmiteshP/nvim-gps'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
