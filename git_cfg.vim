@@ -1,8 +1,8 @@
 "nmap <leader>gb :Git blame<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
-nmap <leader>gd :Gdiff master<CR>
-nmap <leader>gCc :Git checkout master<CR>
+nmap <leader>gd :Gdiff <CR>
+nmap <leader>gCc :Git checkout <CR>
 
 nmap ]G 9999[g
 nmap [G 9999]g

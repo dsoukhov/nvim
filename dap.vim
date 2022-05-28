@@ -77,7 +77,8 @@ require("nvim-dap-virtual-text").setup {
 }
 EOF
 
-nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+" nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F10> :lua require'dap_helper'.step_over_or_load_template()<CR>
 nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
 nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
 nnoremap <silent> <F5>  :lua require'dap_helper'.cont()<CR>
@@ -103,4 +104,4 @@ nnoremap <leader>df :Telescope dap frames<CR>
 nnoremap <leader>db :Telescope dap list_breakpoints<CR>
 nnoremap <leader>du :lua require'dapui'.toggle()<CR>
 
-noremap <silent><leader>x :lua require'dap'.repl.close();require'dap'.disconnect();require'dap'.close();<CR>:AsyncStop<CR>:silent! :bd! /bin/sh<CR>:silent! :bd! repl<CR>:ccl<CR>
+noremap <silent><leader>x :lua require'dap'.repl.close();require'dap'.disconnect();require'dap'.close();require'dapui'.close()<CR>:AsyncStop<CR>:silent! :bd! /bin/sh<CR>:silent! :bd! repl<CR>:ccl<CR>

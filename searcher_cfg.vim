@@ -56,5 +56,5 @@ nnoremap <Leader>gc :lua require'telescope_cfg'.git_cbuf()<CR>
 nnoremap <Leader>gC :lua require'telescope_cfg'.git_checkout()<CR>
 nnoremap <Leader>gl :lua require'telescope_cfg'.git_log()<CR>
 nnoremap <Leader># :lua require'telescope_cfg'.config_files()<CR>
-" ga to preform ag serach on cursor word
-nnoremap ga :Telescope grep_string<CR>
+" gs to preform ag serach on cursor word
+nnoremap gs :Telescope grep_string<CR>

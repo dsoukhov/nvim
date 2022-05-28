@@ -17,7 +17,6 @@ noremap <silent><F8> :lua require('telescope_cfg').task_templates("Runner templa
 noremap <silent><F9> :call Projbuild()<CR>
 "shift+F9
 noremap <silent><F21> :lua require('telescope_cfg').runner_configs()<CR>
-noremap <silent><F10> :lua require('telescope_cfg').task_templates("Build templates", "~/.config/nvim/templates/build", ".tasks")<CR>
 
 "prevent infinte reloading of Projbuild
 if exists('*Projbuild')
