@@ -58,3 +58,6 @@ nnoremap <Leader>gl :lua require'telescope_cfg'.git_log()<CR>
 nnoremap <Leader># :lua require'telescope_cfg'.config_files()<CR>
 " gs to preform ag serach on cursor word
 nnoremap gs :Telescope grep_string<CR>
+
+nnoremap gsrw <cmd>lua require('spectre').open_visual({select_word=true})<CR>
+nnoremap gsr <cmd>lua require('spectre').open_visual()<CR>
