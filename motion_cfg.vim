@@ -6,6 +6,10 @@ nmap f <cmd> lua require("hop").hint_char1({direction = require'hop.hint'.HintDi
 vmap f <cmd> lua require("hop").hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<CR>
 nmap F <cmd> lua require("hop").hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<CR>
 vmap F <cmd> lua require("hop").hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<CR>
+nmap t <cmd> lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<CR>
+vmap t <cmd> lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<CR>
+nmap T <cmd> lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<CR>
+vmap T <cmd> lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<CR>
 nmap <C-f> <cmd> lua require'hop'.hint_words({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<CR>
 vmap <C-f> <cmd> lua require'hop'.hint_words({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<CR>
 nmap <C-S-F> <cmd> lua require'hop'.hint_words({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<CR>
