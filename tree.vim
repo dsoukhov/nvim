@@ -208,14 +208,14 @@ vim.g.nvim_tree_icons = {
     },
 }
 require("nvim-gps").setup()
+
+require'nvim-rooter'.setup()
 EOF
 
 highlight IndentBlanklineContextChar guifg=#EBA217 gui=nocombine
 nmap <Leader>tr :write \| edit \| TSBufEnable highlight<CR>
 "let g:indent_blankline_char="│"
 let g:indent_blankline_char = '┊'
-
-let g:rooter_silent_chdir = 1
 
 "nvim-tree cfg
 let g:nvim_tree_respect_buf_cwd = 1

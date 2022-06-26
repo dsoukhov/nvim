@@ -8,7 +8,7 @@ call plug#begin()
 Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
 Plug 'spywhere/lightline-lsp'
-Plug 'airblade/vim-rooter'
+Plug 'notjedi/nvim-rooter.lua', {'branch':'main'}
 Plug 'mhinz/vim-startify', {'do':'git fetch origin pull/482/head:pr-482 && git checkout pr-482'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
