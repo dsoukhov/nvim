@@ -245,10 +245,13 @@ lsp_installer.on_server_ready(function(server)
     local opts = make_config()
     -- (optional) Customize the options passed to the server
     if server.name == "clangd" then
-         opts.settings=clangd_settings
+      opts.settings=clangd_settings
     end
     if server.name == "sumneko_lua" then
-         opts.settings=lua_settings
+      opts.settings=lua_settings
+    end
+    if server.name == "jdtls" then
+      opts.use_lombok_agent = true
     end
     -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
