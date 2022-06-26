@@ -256,22 +256,5 @@ lsp_installer.on_server_ready(function(server)
     vim.cmd [[ do User LspAttachBuffers ]]
 end)
 
-local null_ls = require("null-ls")
-local opts = make_config()
-opts.sources = {
-    --add sources here
-    --require("null-ls.helpers").conditional(function(utils)
-    --  return utils.root_has_file(".eslintrc.js") and null_ls.builtins.formatting.eslint_d or null_ls.builtins.formatting.prettierd
-    --end),
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.diagnostics.eslint.with({
-      command = "eslint_d"
-    }),
-    null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.diagnostics.shellcheck,
-}
-null_ls.setup(opts)
-
 EOF
 

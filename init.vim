@@ -13,7 +13,6 @@ Plug 'mhinz/vim-startify', {'do':'git fetch origin pull/482/head:pr-482 && git c
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim', {'branch':'main'}
 Plug 'machakann/vim-highlightedyank'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'windwp/nvim-autopairs'
