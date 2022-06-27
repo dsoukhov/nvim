@@ -1,7 +1,5 @@
 lua << EOF
 local dap = require('dap')
-local dap_adapters = vim.fn.stdpath("data") .. "/dapinstall/"
-local dap_install = require("dap-install")
 
 dap.defaults.fallback.terminal_win_cmd = 'belowright 7split new | setlocal winfixheight | setlocal winfixwidth'
 --dap.defaults.fallback.terminal_win_cmd = ':e new'
@@ -10,14 +8,17 @@ dap.defaults.fallback.terminal_win_cmd = 'belowright 7split new | setlocal winfi
 local dap_install = require("dap-install")
 local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
 
-for _, debugger in ipairs(dbg_list) do
-	dap_install.config(debugger)
-end
+dap_install.setup({
+  installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+})
 
-dap.adapters.ccppr_vsc = {
-  type = 'executable',
-  command = dap_adapters .. "ccppr_vsc/extension/debugAdapters/bin/OpenDebugAD7"
-}
+for _, debugger in ipairs(dbg_list) do
+  dap_install.config(debugger)
+end
+-- print(vim.inspect(dap.adapters))
+
+-- dap_install default misses this cfg for cpptools (installed via ccppr_vsc)
+dap.adapters.cpptools.id="cppdbg"
 
 dap.listeners.before["event_terminated"]["plugins-dap"] = function(session, body)
   dap.repl.close()
@@ -83,8 +84,7 @@ nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
 nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
 nnoremap <silent> <F5>  :lua require'dap_helper'.cont()<CR>
 "S-F5
-nnoremap <silent> <F17> :lua require'dap'.reverse-continue()<CR>
-nnoremap <silent> <F17> :lua require'dap'.close()<CR>
+nnoremap <silent> <F17> :lua require'dap_helper'.reverse_continue_or_run_dap_templates()<CR>
 nnoremap <silent> <F6> :lua require'telescope_cfg'.task_templates("Dap templates", "~/.config/nvim/templates/dap", ".dap.json" )<CR>
 nnoremap <leader>dh :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <leader>dj :lua require'dap'.down()<CR>

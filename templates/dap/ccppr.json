@@ -1,12 +1,23 @@
 {
-  "name": "ccppr",
-  "type": "ccppr_vsc",
-  "request": "launch",
-  "program": "${fileDirname}/${fileBasenameNoExtension}",
-  "args": [],
-  "cwd": "${workspaceRoot}",
-  "environment": [],
-  "externalConsole": false,
-  "stopAtEntry": false,
-  "MIMode": "gdb"
+  "default" : {
+    "name": "cpp",
+    "type": "cpp",
+    "request": "launch",
+    "program": "${fileDirname}/${fileBasenameNoExtension}",
+    "args": [],
+    "cwd": "${workspaceRoot}",
+    "environment": [],
+    "externalConsole": false,
+    "stopAtEntry": false,
+    "MIMode": "gdb"
+  },
+  "remote" : {
+    "name": "cpptools",
+    "type": "cpptools",
+    "request": "launch",
+    "miDebuggerServerAddress": "localhost:4444",
+    "program": "${fileDirname}/${fileBasenameNoExtension}",
+    "cwd": "${workspaceRoot}",
+    "MIMode": "gdb"
+  }
 }

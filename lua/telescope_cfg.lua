@@ -34,6 +34,48 @@ function M.task_templates(title, path, local_file)
   }
 end
 
+function M.dap_configs()
+  local cfg_file = io.open(".dap.json")
+  local source
+  if cfg_file then
+    source = vim.fn.json_decode(cfg_file:read("*a"))
+    cfg_file:close()
+  else
+    print(".dap.json not found")
+    return
+  end
+  local tbl = {}
+  local title = "Dap configs"
+  for k, _ in pairs(source) do
+    table.insert(tbl, k)
+  end
+  pickers.new({
+    prompt_title = title,
+    finder = finders.new_table {
+      results = tbl,
+      entry_maker = function(line)
+      if line == "" then
+        return nil
+      end
+      return {
+        value = line,
+        ordinal = line,
+        display = line
+      }
+      end
+    },
+    sorter = sorters.get_generic_fuzzy_sorter(),
+    attach_mappings = function(selected)
+      action_set.select:replace(function()
+        local entry = action_state.get_selected_entry()
+        actions.close(selected)
+        require('dap').run(source[entry.value])
+      end)
+      return true
+    end,
+  }):find()
+end
+
 function M.runner_configs()
   local source = vim.fn['asynctasks#source']("")
   local tbl = {}
