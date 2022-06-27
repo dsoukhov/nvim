@@ -5,9 +5,12 @@ local actions = require('telescope.actions')
 
 require('telescope').setup{
   defaults = {
+    layout_config = {
+      vertical = { width = 0.95 }
+    },
     scroll_strategy    = "cycle",
     selection_strategy = "reset",
-    layout_strategy    = "flex",
+    layout_strategy    = "vertical",
     mappings = {
       n = {
         ["<Esc>"] = actions.close,
