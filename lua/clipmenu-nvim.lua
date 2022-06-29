@@ -110,11 +110,11 @@ function M.setup(config)
 end
 
 function M.clipmenu_yankring_cycle_back()
-  _ClipmenuYankringCycle(-1)
+  _ClipmenuYankringCycle(1)
 end
 
 function M.clipmenu_yankring_cycle_forward()
-  _ClipmenuYankringCycle(1)
+  _ClipmenuYankringCycle(-1)
 end
 
 function M.clipmenu_telescope_VM()
