@@ -137,13 +137,14 @@ function! ToggleQuickfix()
     copen
   else
     cclose
+    call lightline#update()
   endif
 endfunction
 
 nmap 4 $
 nmap - _
 
-nnoremap <leader>q :call ToggleQuickfix()<CR>
+nnoremap <silent> <leader>q :call ToggleQuickfix()<CR>
 
 nmap <Leader>] :bn<CR>
 nmap <Leader>[ :bp<CR>
