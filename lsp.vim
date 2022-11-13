@@ -174,7 +174,7 @@ local on_attach = function(client, bufnr)
 end
 
 local function make_config()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
   capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 return {
     capabilities = capabilities,
@@ -236,34 +236,27 @@ local lua_settings = {
   }
 }
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.settings({
-    ui = {
-        icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
-        }
-    }
-})
+require("mason").setup()
+require("mason-lspconfig").setup()
 
-lsp_installer.on_server_ready(function(server)
+require("mason-lspconfig").setup_handlers {
+  function(server)
     local opts = make_config()
     -- (optional) Customize the options passed to the server
-    if server.name == "clangd" then
+    if server == "clangd" then
       opts.settings=clangd_settings
     end
-    if server.name == "sumneko_lua" then
+    if server == "sumneko_lua" then
       opts.settings=lua_settings
     end
-    if server.name == "jdtls" then
+    if server == "jdtls" then
       opts.use_lombok_agent = true
     end
     -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
+    require("lspconfig")[server].setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
-end)
+  end
+}
 
 EOF
-

@@ -1,7 +1,7 @@
 {
   "default" : {
-    "name": "cpp",
-    "type": "cpp",
+    "name": "cppdbg",
+    "type": "cppdbg",
     "request": "launch",
     "program": "${fileDirname}/${fileBasenameNoExtension}",
     "args": [],
@@ -12,8 +12,8 @@
     "MIMode": "gdb"
   },
   "remote" : {
-    "name": "cpptools",
-    "type": "cpptools",
+    "name": "cppdbg",
+    "type": "cppdbg",
     "request": "launch",
     "miDebuggerServerAddress": "localhost:4444",
     "program": "${fileDirname}/${fileBasenameNoExtension}",

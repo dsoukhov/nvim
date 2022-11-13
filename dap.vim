@@ -4,24 +4,20 @@ local dap = require('dap')
 dap.defaults.fallback.terminal_win_cmd = 'belowright 7split new | setlocal winfixheight | setlocal winfixwidth'
 --dap.defaults.fallback.terminal_win_cmd = ':e new'
 
-----DIInstall ccppr_vsc, python
-local dap_install = require("dap-install")
-local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
-
-dap_install.setup({
-  installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-})
-
-for _, debugger in ipairs(dbg_list) do
-  dap_install.config(debugger)
-end
--- print(vim.inspect(dap.adapters))
-
--- dap_install default misses this cfg for cpptools (installed via ccppr_vsc)
-dap.adapters.cpptools.id="cppdbg"
-
 dap.listeners.before["event_terminated"]["plugins-dap"] = function(session, body)
   dap.repl.close()
+end
+
+for _, package in ipairs(require("mason-registry").get_installed_packages()) do
+
+  if package.name == "cpptools" then
+    dap.adapters.cppdbg = {
+      id = 'cppdbg',
+      type = 'executable',
+      command = package:get_install_path() .. "/extension/debugAdapters/bin/OpenDebugAD7"
+    }
+  end
+
 end
 
 require('telescope').load_extension('dap')
