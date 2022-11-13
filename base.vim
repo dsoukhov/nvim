@@ -131,20 +131,11 @@ vmap r "_dP
 " map select last pasted as gp
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" quickfix toggle
-function! ToggleQuickfix()
-  if empty(filter(getwininfo(), 'v:val.quickfix'))
-    copen
-  else
-    cclose
-    call lightline#update()
-  endif
-endfunction
-
 nmap 4 $
 nmap - _
 
-nnoremap <silent> <leader>q :call ToggleQuickfix()<CR>
+"make $ exclusive by default
+map $ g_
 
 nmap <Leader>] :bn<CR>
 nmap <Leader>[ :bp<CR>
