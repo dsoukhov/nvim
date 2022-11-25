@@ -40,8 +40,15 @@ function! LightlineGitStatus()
 endfunction
 
 function! LightlineGitChanges()
-  if exists("b:gitsigns_status")
-    return b:gitsigns_status
+  let l:ret = ""
+  if exists("b:gitsigns_status_dict['added']")
+    let l:ret= "+"..b:gitsigns_status_dict['added']"
   endif
-  return ''
+  if exists("b:gitsigns_status_dict['removed']")
+    let l:ret .= " -"..b:gitsigns_status_dict['removed']"
+  endif
+  if exists("b:gitsigns_status_dict['changed']")
+    let l:ret .= " ~"..b:gitsigns_status_dict['changed']"
+  endif
+  return l:ret
 endfunction
