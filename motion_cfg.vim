@@ -1,27 +1,27 @@
 lua << EOF
 require'hop'.setup()
 --word motion config
--- local hop = require('hop')
--- local directions = require('hop.hint').HintDirection
--- vim.keymap.set('', 'f', function()
---   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true})
--- end, {remap=true})
--- vim.keymap.set('', 'F', function()
---   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true})
--- end, {remap=true})
--- vim.keymap.set('', 't', function()
---   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
--- end, {remap=true})
--- vim.keymap.set('', 'T', function()
---   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })
--- end, {remap=true})
+local hop = require('hop')
+local directions = require('hop.hint').HintDirection
+vim.keymap.set('', 'f', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true})
+end, {remap=true})
+vim.keymap.set('', 'F', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true})
+end, {remap=true})
+vim.keymap.set('', 't', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+end, {remap=true})
+vim.keymap.set('', 'T', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })
+end, {remap=true})
 EOF
 nmap <C-f> <cmd> lua require'hop'.hint_words({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<CR>
 vmap <C-f> <cmd> lua require'hop'.hint_words({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<CR>
 nmap <C-S-F> <cmd> lua require'hop'.hint_words({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<CR>
 vmap <C-S-F> <cmd> lua require'hop'.hint_words({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<CR>
-nmap <C-'> <cmd> lua require'hop'.hint_lines_skip_whitespace()<CR>
-vmap <C-'> <cmd> lua require'hop'.hint_lines_skip_whitespace()<CR>
+nmap <C-l> <cmd> lua require'hop'.hint_lines_skip_whitespace()<CR>
+vmap <C-l> <cmd> lua require'hop'.hint_lines_skip_whitespace()<CR>
 map <C-\> <cmd> lua require'hop'.hint_patterns()<CR>
 vmap <C-\> <cmd> lua require'hop'.hint_patterns()<CR>
 
