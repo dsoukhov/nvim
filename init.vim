@@ -29,7 +29,7 @@ Plug 'tpope/vim-repeat'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'windwp/nvim-spectre'
-Plug 'phaazon/hop.nvim'
+Plug 'phaazon/hop.nvim', {'commit':'caaccee'}
 Plug 'chaoren/vim-wordmotion'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
