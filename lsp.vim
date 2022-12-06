@@ -95,26 +95,22 @@ cmp.setup({
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
-  },
-  experimental = {
-    ghost_text = false,
-    native_menu = false,
-  },
-})
-
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer', keyword_length = 3 },
-  },
-  mapping = cmp.mapping.preset.cmdline({}),
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  sources = {
-    { name = 'path' },
-    { name = 'cmdline', max_item_count = 20, keyword_length = 2 }
   }
+})
+
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
 })
 
 local nvim_lsp = require('lspconfig')
