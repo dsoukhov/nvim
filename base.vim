@@ -46,6 +46,8 @@ set cmdheight=1 " only one line for commands
 set shortmess+=c " don't need to press enter so often
 " no comment on newline
 au BufEnter * set fo-=c fo-=r fo-=o
+" enable incremental substitution
+set inccommand=nosplit
 
 " follow view of cursor
 set sidescrolloff=999
