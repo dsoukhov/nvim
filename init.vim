@@ -45,6 +45,7 @@ Plug 'rafamadriz/friendly-snippets', {'branch':'main'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'princejoogie/dir-telescope.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'nvim-telescope/telescope-dap.nvim'
 Plug 'theHamsta/nvim-dap-virtual-text'

@@ -35,6 +35,7 @@ require('telescope').setup{
     },
   }
 }
+require("telescope").load_extension("dir")
 EOF
 
 " quickfix toggle
@@ -57,10 +58,11 @@ nnoremap ; :Telescope buffers show_all_buffers=true<CR>
 "nnoremap <C-;> :lua require'telescope_cfg'.fuz_buf()<CR>
 nnoremap <Leader>; :lua require'telescope_cfg'.fuz_buf()<CR>
 nnoremap <Leader>s :Telescope live_grep<CR>
+nnoremap <Leader>S :lua require("telescope").extensions.dir.live_grep()<CR>
 nnoremap <Leader>j :Telescope jumplist<CR>
-nnoremap <Leader>S :lua require'telescope_cfg'.sessions_search()<CR>
-nnoremap <leader>T :lua require'telescope_cfg'.search_only_certain_files()<CR>
+nnoremap <Leader>a :lua require'telescope_cfg'.sessions_search()<CR>
 nnoremap <leader>t :lua require'telescope_cfg'.search_all_files()<CR>
+nnoremap <Leader>T :lua require("telescope").extensions.dir.find_files()<CR>
 nnoremap <Leader>h :Telescope command_history<CR>
 nnoremap <Leader>?? :Telescope help_tags<CR>
 nnoremap <Leader>? :Telescope man_pages<CR>
