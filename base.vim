@@ -128,7 +128,7 @@ autocmd FileType gitcommit setlocal spell
 nnoremap <CR> :noh<CR><CR>
 
 " replace current selection with buffer
-vmap r "_dp
+vmap r "_dP
 
 " map select last pasted as gp
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
