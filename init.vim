@@ -28,7 +28,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring', {'branch':'main'}
 Plug 'tpope/vim-repeat'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'phaazon/hop.nvim', {'commit':'caaccee'}
+Plug 'phaazon/hop.nvim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'

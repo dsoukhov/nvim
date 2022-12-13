@@ -8,6 +8,8 @@ set inccommand=split
 "Line nums hybrid by default
 set relativenumber
 set number
+" move beyond final char
+set ve+=onemore
 " Spaces for tabs
 set tabstop=2 softtabstop=2
 set shiftwidth=2
@@ -120,7 +122,7 @@ map ^[[70;6u <C-S-F>
 map ^[[59;5u <C-;>
 
 " toggle spellcheck
-nn <leader>` :setlocal spell! spell?<CR>
+nn <leader>z :setlocal spell! spell?<CR>
 " turn spellcheck on for gitcommits
 autocmd FileType gitcommit setlocal spell
 
@@ -144,4 +146,5 @@ nmap <Leader>[ :bp<CR>
 
 nmap <Leader>0 :e#<CR>
 nmap <Leader>c :bw!<CR>
+nmap <Leader>C :q!<CR>
 nmap <Leader>w :w<CR>
