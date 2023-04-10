@@ -32,7 +32,7 @@ Plug 'phaazon/hop.nvim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'SmiteshP/nvim-gps'
+Plug 'SmiteshP/nvim-navic'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'

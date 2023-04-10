@@ -27,8 +27,8 @@ let g:lightline = {
 \ }
 
 func! NvimGps() abort
-  return luaeval("require'nvim-gps'.is_available()") ?
-    \ luaeval("require'nvim-gps'.get_location()") : ''
+  return luaeval("require'nvim-navic'.is_available()") ?
+    \ luaeval("require'nvim-navic'.get_location()") : ''
 endf
 
 function! LightlineWorkspace()
