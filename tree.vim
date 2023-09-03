@@ -155,13 +155,6 @@ require'nvim-tree'.setup {
     -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
     side = 'left',
     -- if true the tree will resize itself after opening a file
-    mappings = {
-      -- custom only false will merge the list with the default mappings
-      -- if true, it will only use your list to set the mappings
-      custom_only = false,
-      -- list of mappings to set on the tree manually
-      list = {}
-    }
   },
   -- show lsp diagnostics in the signcolumn
   diagnostics = {
