@@ -1,9 +1,6 @@
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  context_commentstring = {
-    enable = true
-  },
   ignore_install = { "cpp" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
@@ -59,6 +56,9 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
+require('ts_context_commentstring').setup {}
+
+vim.g.skip_ts_context_commentstring_module = true
 vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_show_current_context = true
 vim.g.indent_blankline_show_first_indent_level = true

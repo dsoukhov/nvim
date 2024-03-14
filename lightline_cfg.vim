@@ -1,9 +1,23 @@
-" Lightline and lightline-bufferline required
+" Lightline required
+" workaround to keep statusline active when floating window is spawned
+lua << EOF
+local util = require "vim.lsp.util"
+local orig = util.make_floating_popup_options
+---@diagnostic disable-next-line: duplicate-set-field
+util.make_floating_popup_options = function(width, height, opts)
+  local orig_opts = orig(width, height, opts)
+  orig_opts.noautocmd = true
+  return orig_opts
+end
+EOF
 let g:lightline = {
   \ 'colorscheme': 'gruvbox_material',
   \ 'active': {
   \   'left': [['mode', 'paste'], ['absolutepath', 'modified'], ['git_status'], ['gps']],
   \   'right': [['lineinfo'], ['percent'], ['gitlinechanges'], ['readonly'], ['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints']]
+  \ },
+  \ 'inactive': {
+  \   'left': [['absolutepath'], ['git_status'], ['gps']],
   \ },
   \ 'component_type': {
   \   'readonly': 'error',

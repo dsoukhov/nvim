@@ -11,8 +11,8 @@ Plug 'spywhere/lightline-lsp'
 Plug 'notjedi/nvim-rooter.lua', {'branch':'main'}
 Plug 'mhinz/vim-startify', {'do':'git fetch origin pull/482/head:pr-482 && git checkout pr-482'}
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/mason.nvim', { 'do': 'MasonUpdate' }
 Plug 'williamboman/mason-lspconfig'
+Plug 'williamboman/mason.nvim', {'do': 'MasonUpdate'}
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'lukas-reineke/indent-blankline.nvim'
