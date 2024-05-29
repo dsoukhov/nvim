@@ -6,14 +6,12 @@ endif
 
 call plug#begin()
 Plug 'sainnhe/gruvbox-material'
-Plug 'itchyny/lightline.vim'
-Plug 'spywhere/lightline-lsp'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'notjedi/nvim-rooter.lua', {'branch':'main'}
 Plug 'mhinz/vim-startify', {'do':'git fetch origin pull/482/head:pr-482 && git checkout pr-482'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason-lspconfig'
-Plug 'williamboman/mason.nvim', {'do': 'MasonUpdate'}
-Plug 'ray-x/lsp_signature.nvim'
+Plug 'williamboman/mason.nvim', {'do': ':MasonUpdate'}
 Plug 'machakann/vim-highlightedyank'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'windwp/nvim-autopairs'
@@ -29,11 +27,15 @@ Plug 'tpope/vim-repeat'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'smoka7/hop.nvim'
+Plug 'nvim-pack/nvim-spectre'
 Plug 'chaoren/vim-wordmotion'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'SmiteshP/nvim-navic'
 Plug 'neovim/nvim-lspconfig'
+Plug 'folke/noice.nvim'
+Plug 'rcarriga/nvim-notify'
+Plug 'MunifTanjim/nui.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -47,9 +49,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'princejoogie/dir-telescope.nvim'
 Plug 'mfussenegger/nvim-dap'
-Plug 'nvim-telescope/telescope-dap.nvim'
-Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'nvim-telescope/telescope-dap.nvim'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'roxma/vim-hug-neovim-rpc'
@@ -63,7 +66,7 @@ source $HOME/.config/nvim/lsp.vim
 source $HOME/.config/nvim/git_cfg.vim
 source $HOME/.config/nvim/tree.vim
 source $HOME/.config/nvim/pairs_cfg.vim
-source $HOME/.config/nvim/lightline_cfg.vim
+source $HOME/.config/nvim/statusline.vim
 source $HOME/.config/nvim/searcher_cfg.vim
 source $HOME/.config/nvim/sessions_cfg.vim
 source $HOME/.config/nvim/dap.vim

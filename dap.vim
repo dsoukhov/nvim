@@ -100,4 +100,4 @@ nnoremap <leader>df :Telescope dap frames<CR>
 nnoremap <leader>db :Telescope dap list_breakpoints<CR>
 nnoremap <leader>du :lua require'dapui'.toggle()<CR>
 
-noremap <silent><leader>x :lua require'dap'.repl.close();require'dap'.disconnect();require'dap'.close();require'dapui'.close()<CR>:AsyncStop<CR>:silent! :bd! /bin/sh<CR>:silent! :bd! repl<CR>:ccl<CR>:call lightline#update()<CR>
+noremap <silent><leader>x :lua require'dap'.repl.close();require'dap'.disconnect();require'dap'.close();require'dapui'.close()<CR>:AsyncStop<CR>:silent! :bd! /bin/sh<CR>:silent! :bd! repl<CR>:ccl<CR>

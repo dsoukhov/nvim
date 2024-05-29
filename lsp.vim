@@ -149,14 +149,14 @@ local on_attach = function(client, bufnr)
   --buf_set_keymap('n', '=d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   --buf_set_keymap('n', '<space>l', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-  require "lsp_signature".on_attach({
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
-    hint_prefix = "",
-    handler_opts = {
-      border = "single",
-      floating_window_above_cur_line = true
-    },
-  })
+  -- require "lsp_signature".on_attach({
+  --   bind = true, -- This is mandatory, otherwise border config won't get registered.
+  --   hint_prefix = "",
+  --   handler_opts = {
+  --     border = "single",
+  --     floating_window_above_cur_line = true
+  --   },
+  -- })
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.documentHighlightProvider then
       vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
@@ -249,7 +249,7 @@ require("mason-lspconfig").setup_handlers {
     if server == "clangd" then
       opts.settings=clangd_settings
     end
-    if server == "sumneko_lua" then
+    if server == "lua_ls" then
       opts.settings=lua_settings
     end
     if server == "jdtls" then

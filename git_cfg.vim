@@ -1,8 +1,7 @@
-"nmap <leader>gb :Git blame<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
-nmap <leader>gd :Gdiff <CR>
 nmap <leader>gCc :Git checkout <CR>
+nmap <leader>gd :Gdiff <CR>
 
 nmap ]G 9999[g
 nmap [G 9999]g
@@ -42,21 +41,16 @@ require('gitsigns').setup {
       return '<Ignore>'
     end, {expr=true})
 
-    -- ['n <leader>ghs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    -- ['v <leader>ghs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    -- ['n <leader>ghu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    -- ['n <leader>ghr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    -- ['v <leader>ghr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    -- ['n <leader>ghR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    -- ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
-    -- ['n <leader>gcb'] = '<cmd>lua require"gitsigns".change_base(vim.fn.input("base: "))<CR>',
-    -- ['n <leader>gdt'] = '<cmd>lua require"gitsigns".diffthis(vim.fn.input(": "))<CR>',
+    map('n', '<leader>gs', gs.stage_hunk)
+    map('n', '<leader>gr', gs.reset_hunk)
+    map('n', '<leader>gS', gs.stage_buffer)
+    map('n', '<leader>gu', gs.undo_stage_hunk)
+    map('n', '<leader>gR', gs.reset_buffer)
+    map('n', '<leader>gp', gs.preview_hunk)
+    map('n', '<leader>gb', function() gs.blame_line{full=true} end)
 
-    -- -- Text objects
-    -- ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    -- ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    -- ['o ah'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    -- ['x ah'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+    -- Text object
+    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
   end,
   watch_gitdir= {
     interval = 1000,

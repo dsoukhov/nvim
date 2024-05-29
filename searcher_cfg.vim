@@ -36,17 +36,10 @@ require('telescope').setup{
   }
 }
 require("telescope").load_extension("dir")
+vim.keymap.set('n', '<leader>sr', '<cmd>lua require("spectre").toggle()<CR>', {
+    desc = "Toggle Spectre"
+})
 EOF
-
-" quickfix toggle
-function! ToggleQuickfix()
-  if empty(filter(getwininfo(), 'v:val.quickfix'))
-    copen
-  else
-    cclose
-    call lightline#update()
-  endif
-endfunction
 
 nnoremap <Leader>Q :Telescope quickfix<CR>
 nnoremap <Leader>p :lua require'telescope_cfg'.workspace_files()<CR>
@@ -73,4 +66,3 @@ nnoremap <Leader>gl :lua require'telescope_cfg'.git_log()<CR>
 nnoremap <Leader># :lua require'telescope_cfg'.config_files()<CR>
 " gs to preform ag serach on cursor word
 nnoremap gs :Telescope grep_string<CR>
-nnoremap <silent> <leader>q :call ToggleQuickfix()<CR>

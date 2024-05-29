@@ -61,10 +61,14 @@ nnoremap <C-j> <C-W><C-J>
 nnoremap <C-k> <C-W><C-K>
 nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
-nnoremap <C-w>h 30<C-w><
-nnoremap <C-w>l 30<C-w>>
-nnoremap <C-w>j 10<C-W>-
-nnoremap <C-w>k 10<C-W>+
+nnoremap <C-,> 5<C-w><
+nnoremap <C-.> 5<C-w>>
+nnoremap <C-<> 99<C-w><
+nnoremap <C->> 99<C-w>>
+nnoremap <C-s> 2<C-W>-
+nnoremap <C-t> 2<C-W>+
+nnoremap <C-S-S> 99<C-W>-
+nnoremap <C-S-T> 99<C-W>+
 
 " Disable help
 map <F1> <Nop>
@@ -120,6 +124,8 @@ map ^[[39;5u <C-'>
 map  <C-\>
 map ^[[70;6u <C-S-F>
 map ^[[59;5u <C-;>
+map ^[[84;6u <C-S-T>
+map ^[[83;6u <C-S-S>
 
 " toggle spellcheck
 nn <leader>z :setlocal spell! spell?<CR>
@@ -135,11 +141,21 @@ vmap r "_dP
 " map select last pasted as gp
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-nmap 4 $
 nmap - _
 
 "make $ exclusive by default
 map $ g_
+
+" quickfix toggle
+function! ToggleQuickfix()
+  if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
+  else
+    cclose
+  endif
+endfunction
+
+nnoremap <silent> <leader>q :call ToggleQuickfix()<CR>
 
 nmap <Leader>] :bn<CR>
 nmap <Leader>[ :bp<CR>
