@@ -16,8 +16,7 @@ function _GetClipmenuList()
       vim.api.nvim_get_var("clipmenu_cache_dir")
     ),
   }
-  local list = utils.get_os_command_output(cmd)
-  return list
+  return utils.get_os_command_output(cmd)
 end
 
 --escape lua special chars for use in external bash commands
@@ -47,12 +46,11 @@ function _GetClipmenuEntry(chosen_line, copyToClip, delim)
 end
 
 function _ClipmenuYankringCycle(direction)
-  local curpos = vim.g.clipmenu_pos
-  local prevlines = vim.g.clipmenu_cache_lines
   local enteries = _GetClipmenuList()
-  if curpos == nil or prevlines == nil or prevlines ~= #enteries then
-    print("New entry found. Resetting yankring position.")
-    vim.api.nvim_set_var("clipmenu_cache_lines", #enteries)
+  local curpos = vim.g.clipmenu_pos or 1
+  local prevlines = vim.g.clipmenu_cache_lines or #enteries
+  if prevlines ~= #enteries then
+    print("New entry found; resetting yankring position")
     curpos = 1
   else
     curpos = (curpos + direction) % #enteries
@@ -62,14 +60,16 @@ function _ClipmenuYankringCycle(direction)
   end
   vim.api.nvim_set_var("clipmenu_pos", curpos)
   local to_paste = _GetClipmenuEntry(_StringCleanup(enteries[curpos]), false)
-  local prev_paste_sel = vim.fn.strpart(vim.fn.getregtype(), 0, 1)
-  local prev_paste_mark_end = vim.api.nvim_buf_get_mark(0, "]")
-  if prev_paste_mark_end[1] <= vim.fn.getwininfo(vim.api.nvim_get_current_win())[1].botline then
-    vim.cmd("normal " .. "`[" .. prev_paste_sel .. "`] \"_c")
+  local prev_paste_mark_end_pos = unpack(vim.api.nvim_buf_get_mark(0, "]"))
+  local buf_bot_pos = unpack(vim.fn.getwininfo(vim.api.nvim_get_current_win())).botline
+  local sel_prev_paste_cmd = "normal `[V `] \"_c"
+  if prev_paste_mark_end_pos ~=0 and prev_paste_mark_end_pos <= buf_bot_pos then
+    vim.cmd(sel_prev_paste_cmd)
     vim.api.nvim_put(to_paste, "", true, true)
   else
-    print("Previous paste not found.")
+    print("Previous paste not found")
   end
+  vim.api.nvim_set_var("clipmenu_cache_lines", #enteries)
 end
 
 function _ClipmenuTelescope(aftercursor, isVisual)
@@ -102,7 +102,7 @@ function _ClipmenuTelescope(aftercursor, isVisual)
       end)
       return true
     end,
-  }):find()
+  }, {}):find()
 end
 
 function M.setup(config)
@@ -122,11 +122,11 @@ function M.clipmenu_telescope_VM()
 end
 
 function M.clipmenu_telescope_AC()
-  _ClipmenuTelescope(true)
+  _ClipmenuTelescope(true, false)
 end
 
 function M.clipmenu_telescope_BC()
-  _ClipmenuTelescope(false)
+  _ClipmenuTelescope(false, false)
 end
 
 return M
