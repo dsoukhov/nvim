@@ -9,7 +9,7 @@ require('lualine').setup {
       statusline = {},
       winbar = {},
     },
-    ignore_focus = {'NvimTree'},
+    ignore_focus = {'NvimTree', 'aerial'},
     always_divide_middle = true,
     globalstatus = true,
     refresh = {

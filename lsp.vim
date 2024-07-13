@@ -190,20 +190,20 @@ local clangd_settings = {
     filetypes = { "c", "cpp" },
     rootPatterns = { "compile_commands.json", ".git", "Makefile" },
     args = {
-      "-j=6",
-      "--limit-results=0",
-      "--cross-file-rename",
-      --"--compile_args_from=filesystem",
-      --"--all-scopes-completion",
-      --"--background-index",
+      -- "-j=6",
+      -- "--limit-results=0",
+      -- "--cross-file-rename",
+      -- "--compile_args_from=filesystem",
+      -- "--all-scopes-completion",
+      -- "--background-index",
       ----https://clangd.llvm.org/config.html
       ----set project config in .clangd at root
-      --"--enable-config",
-      --"--completion-parse=always",
-      --"--completion-style=detailed",
-      --"--function-arg-placeholders",
-      --"--header-insertion-decorators",
-      --"--header-insertion=never",
+      -- "--enable-config",
+      -- "--completion-parse=always",
+      -- "--completion-style=detailed",
+      -- "--function-arg-placeholders",
+      -- "--header-insertion-decorators",
+      -- "--header-insertion=never",
     },
   }
 }

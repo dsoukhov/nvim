@@ -13,8 +13,10 @@ M.project_files = function()
 end
 
 M.symbol_doc_lookup = function()
-  local retval = pcall(require'telescope.builtin'.lsp_document_symbols)
-  if not retval then require'telescope.builtin'.treesitter() end
+  local ret = pcall(require'telescope.builtin'.lsp_document_symbols)
+  if not ret then
+    require'telescope.builtin'.treesitter()
+  end
 end
 
 function M.task_templates(title, path, local_file)
