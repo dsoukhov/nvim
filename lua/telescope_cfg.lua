@@ -12,13 +12,6 @@ M.project_files = function()
   if not retval then require'telescope.builtin'.find_files() end
 end
 
-M.symbol_doc_lookup = function()
-  local ret = pcall(require'telescope.builtin'.lsp_document_symbols)
-  if not ret then
-    require'telescope.builtin'.treesitter()
-  end
-end
-
 function M.task_templates(title, path, local_file)
   require('telescope.builtin').find_files {
     prompt_title = title,

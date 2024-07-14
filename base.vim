@@ -25,11 +25,6 @@ set signcolumn=auto:3
 set isfname+=@-@
 "set scroll offset
 set scrolloff=6
-" Better indenting
-"set autoindent
-"set smartindent
-" Show extra whitespace
-"set list listchars=tab:>·,trail:·,extends:>,precedes:< 
 set list lcs=tab:¦·,trail:·,extends:>,precedes:< 
 "set leader key to \
 let g:mapleader='\'
@@ -72,7 +67,6 @@ nnoremap <C-S-T> 99<C-W>+
 
 " Disable help
 map <F1> <Nop>
-map <F1> <Esc>
 
 " Disable arrow keys
 map <Left> <Nop>
@@ -91,10 +85,6 @@ set undofile
 " Better indenting
 vnoremap < <gv
 vnoremap > >gv
-
-" +/- to increment/dec
-nnoremap + <C-a>
-nnoremap - <C-x>
 
 " dot repeat visual sel
 xnoremap . :norm.<CR>
@@ -145,17 +135,6 @@ nmap - _
 
 "make $ exclusive by default
 map $ g_
-
-" quickfix toggle
-function! ToggleQuickfix()
-  if empty(filter(getwininfo(), 'v:val.quickfix'))
-    copen
-  else
-    cclose
-  endif
-endfunction
-
-nnoremap <silent> <leader>q :call ToggleQuickfix()<CR>
 
 nmap <Leader>] :bn<CR>
 nmap <Leader>[ :bp<CR>

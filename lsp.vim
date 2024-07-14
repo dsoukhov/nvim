@@ -146,8 +146,6 @@ local on_attach = function(client, bufnr)
   --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<leader>D', '<cmd>Telescope diagnostics bufnr=0<CR>', opts)
   buf_set_keymap('n', '<leader>d', '<cmd>Telescope diagnostics<CR>', opts)
-  --buf_set_keymap('n', '=d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  --buf_set_keymap('n', '<space>l', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
   -- require "lsp_signature".on_attach({
   --   bind = true, -- This is mandatory, otherwise border config won't get registered.
