@@ -17,7 +17,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag', {'branch':'main'}
 Plug 'AndrewRadev/whitespaste.vim'
-Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim', {'branch':'main'}
 Plug 'tpope/vim-surround'
@@ -71,5 +70,5 @@ source $HOME/.config/nvim/pairs_cfg.vim
 source $HOME/.config/nvim/statusline.vim
 source $HOME/.config/nvim/searcher_cfg.vim
 source $HOME/.config/nvim/sessions_cfg.vim
-source $HOME/.config/nvim/dap.vim
+" source $HOME/.config/nvim/dap.vim
 source $HOME/.config/nvim/runner_cfg.vim

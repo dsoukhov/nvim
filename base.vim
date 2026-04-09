@@ -44,7 +44,6 @@ set smartcase
 " set vertical col
 set colorcolumn=80
 set cursorline
-set cmdheight=1 " only one line for commands
 set shortmess+=c " don't need to press enter so often
 " no comment on newline
 au BufEnter * set fo-=c fo-=r fo-=o

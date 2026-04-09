@@ -12,6 +12,3 @@ if exists('+termguicolors')
   colorscheme gruvbox-material
   set termguicolors
 endif
-
-"enable colorizer
-lua require'colorizer'.setup()

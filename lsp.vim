@@ -1,12 +1,5 @@
 lua << EOF
 
--- fix https://github.com/neovim/neovim/issues/21856
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-  callback = function()
-    vim.fn.jobstart("", { detach = true })
-  end,
-})
-
 -- line diag config
 vim.diagnostic.config({
   virtual_text = false, -- Turn off inline diagnostics
@@ -242,24 +235,24 @@ local lua_settings = {
 require("mason").setup()
 require("mason-lspconfig").setup()
 
-require("mason-lspconfig").setup_handlers {
-  function(server)
-    local opts = make_config()
-    -- (optional) Customize the options passed to the server
-    if server == "clangd" then
-      opts.settings=clangd_settings
-    end
-    if server == "lua_ls" then
-      opts.settings=lua_settings
-    end
-    if server == "jdtls" then
-      opts.use_lombok_agent = true
-    end
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    require("lspconfig")[server].setup(opts)
-    vim.cmd [[ do User LspAttachBuffers ]]
-  end
-}
+-- require("mason-lspconfig").setup_handlers {
+--   function(server)
+--     local opts = make_config()
+--     -- (optional) Customize the options passed to the server
+--     if server == "clangd" then
+--       opts.settings=clangd_settings
+--     end
+--     if server == "lua_ls" then
+--       opts.settings=lua_settings
+--     end
+--     if server == "jdtls" then
+--       opts.use_lombok_agent = true
+--     end
+--     -- This setup() function is exactly the same as lspconfig's setup function.
+--     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+--     require("lspconfig")[server].setup(opts)
+--     vim.cmd [[ do User LspAttachBuffers ]]
+--   end
+-- }
 
 EOF
