@@ -1,61 +1,91 @@
 lua << EOF
--- require'nvim-treesitter.configs'.setup {
---   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
---   ignore_install = { "cpp" }, -- List of parsers to ignore installing
---   auto_install = true,
---   highlight = {
---     enable = true,              -- false will disable the whole extension
---     disable = {},  -- list of language that will be disabled
---   },
---   indent = {
---     enable = true
---   },
---   autotag = {
---     enable = true
---   },
---   textobjects = {
---     select = {
---       enable = true,
 
---       -- Automatically jump forward to textobj, similar to targets.vim 
---       lookahead = true,
+require('nvim-treesitter').install({
+  "c", "cpp", "cmake", "comment", "go", "java", "javascript",
+  "jsx", "lua", "ledger", "markdown", "markdown_inline",
+  "python", "rust", "typescript", "tsx", "vim", "vue", "zsh",
+  "bash"
+})
 
---       keymaps = {
---         -- You can use the capture groups defined in textobjects.scm
---         ["af"] = "@function.outer",
---         ["if"] = "@function.inner",
---         ["ac"] = "@class.outer",
---         ["ic"] = "@class.inner",
---         ["ab"] = "@block.outer",
---         ["ib"] = "@block.inner",
---       }
---     },
---     move = {
---       enable = true,
---       set_jumps = true, -- whether to set jumps in the jumplist
---       goto_next_start = {
---         ["]m"] = "@function.outer",
---         ["]c"] = "@class.outer",
---         ["]b"] = "@block.outer",
---       },
---       goto_next_end = {
---         ["]M"] = "@function.outer",
---         ["]C"] = "@class.outer",
---         ["]B"] = "@block.outer",
---       },
---       goto_previous_start = {
---         ["[m"] = "@function.outer",
---         ["[c"] = "@class.outer",
---         ["[b"] = "@block.outer",
---       },
---       goto_previous_end = {
---         ["[M"] = "@function.outer",
---         ["[C"] = "@class.outer",
---         ["[B"] = "@block.outer",
---       },
---     },
---   }
--- }
+require('nvim-treesitter-textobjects').setup{
+  select = {
+    lookahead = true,
+  },
+  move = {
+    set_jumps = true,
+  }
+}
+
+-- Toggle mappings
+vim.keymap.set('n', '<leader>tr', function()
+  if vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] ~= nil then
+    vim.treesitter.stop()
+    vim.print("Turned off treesitter highlighting...")
+  else
+    vim.treesitter.start()
+    vim.print("Turned on treesitter highlighting...")
+  end
+end, { noremap=true, silent=true, desc="Toggle treesitter highlighting" })
+
+vim.keymap.set({ "x", "o" }, "am", function()
+  require('nvim-treesitter-textobjects.select').select_textobject("@function.outer", "textobjects")
+end, { desc = "Function outer region" })
+vim.keymap.set({ "x", "o" }, "im", function()
+  require('nvim-treesitter-textobjects.select').select_textobject("@function.inner", "textobjects")
+end, { desc = "Function inner region" })
+
+vim.keymap.set({ "x", "o" }, "ac", function()
+  require('nvim-treesitter-textobjects.select').select_textobject("@class.outer", "textobjects")
+end, { desc = "Class outer region" })
+vim.keymap.set({ "x", "o" }, "ic", function()
+  require('nvim-treesitter-textobjects.select').select_textobject("@class.inner", "textobjects")
+end, { desc = "Class inner region" })
+
+vim.keymap.set({ "x", "o" }, "ab", function()
+  require('nvim-treesitter-textobjects.select').select_textobject("@block.outer", "textobjects")
+end, { desc = "Block outer region" })
+vim.keymap.set({ "x", "o" }, "ib", function()
+  require('nvim-treesitter-textobjects.select').select_textobject("@block.inner", "textobjects")
+end, { desc = "Block inner region" })
+
+vim.keymap.set({ "n", "x", "o" }, "]m", function()
+  require('nvim-treesitter-textobjects.move').goto_next_start("@function.outer", "textobjects")
+end, { desc = "Next function" })
+vim.keymap.set({ "n", "x", "o" }, "]M", function()
+  require('nvim-treesitter-textobjects.move').goto_next_end("@function.outer", "textobjects")
+end, { desc = "End of next function" })
+vim.keymap.set({ "n", "x", "o" }, "[m", function()
+  require('nvim-treesitter-textobjects.move').goto_previous_start("@function.outer", "textobjects")
+end, { desc = "Previous function" })
+vim.keymap.set({ "n", "x", "o" }, "[M", function()
+  require('nvim-treesitter-textobjects.move').goto_previous_end("@function.outer", "textobjects")
+end, { desc = "End of previous function" })
+
+vim.keymap.set({ "n", "x", "o" }, "]c", function()
+  require('nvim-treesitter-textobjects.move').goto_next_start("@class.outer", "textobjects")
+end, { desc = "Next class" })
+vim.keymap.set({ "n", "x", "o" }, "]C", function()
+  require('nvim-treesitter-textobjects.move').goto_next_end("@class.outer", "textobjects")
+end, { desc = "End of next class" })
+vim.keymap.set({ "n", "x", "o" }, "[c", function()
+  require('nvim-treesitter-textobjects.move').goto_previous_start("@class.outer", "textobjects")
+end, { desc = "Previous class" })
+vim.keymap.set({ "n", "x", "o" }, "[C", function()
+  require('nvim-treesitter-textobjects.move').goto_previous_end("@class.outer", "textobjects")
+end, { desc = "End of previous class" })
+
+vim.keymap.set({ "n", "x", "o" }, "]b", function()
+  require('nvim-treesitter-textobjects.move').goto_next_start("@block.outer", "textobjects")
+end, { desc = "Next block" })
+vim.keymap.set({ "n", "x", "o" }, "]B", function()
+  require('nvim-treesitter-textobjects.move').goto_next_end("@block.outer", "textobjects")
+end, { desc = "End of next block" })
+vim.keymap.set({ "n", "x", "o" }, "[b", function()
+  require('nvim-treesitter-textobjects.move').goto_previous_start("@block.outer", "textobjects")
+end, { desc = "Previous block" })
+vim.keymap.set({ "n", "x", "o" }, "[B", function()
+  require('nvim-treesitter-textobjects.move').goto_previous_end("@block.outer", "textobjects")
+end, { desc = "End of previous block" })
 
 require('ts_context_commentstring').setup {}
 
@@ -67,7 +97,7 @@ vim.opt.termguicolors = true
 require'nvim-tree'.setup {
   view = {
     -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
-    side = 'left',
+  side = 'left',
     -- if true the tree will resize itself after opening a file
   },
   -- show lsp diagnostics in the signcolumn
@@ -83,44 +113,39 @@ require'nvim-tree'.setup {
 }
 
 vim.g.nvim_tree_show_icons = {
-    git = 1,
-    folders = 1,
-    files = 1,
+  git = 1,
+  files = 1,
+  folders = 1,
 }
 vim.g.nvim_tree_icons = {
-    default = '',
-    symlink = '',
-    git = {
-        unstaged = "✗",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "★"
-    },
-    folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-        symlink_open = "",
-    },
-}
-require("nvim-navic").setup{
-  lsp = {
-      auto_attach = true
+  default = '',
+  symlink = '',
+  git = {
+    unstaged = "✗",
+    staged = "✓",
+    unmerged = "",
+    renamed = "➜",
+    untracked = "★"
+  },
+  folder = {
+    default = "",
+    open = "",
+    empty = "",
+    empty_open = "",
+    symlink = "",
+    symlink_open = "",
   },
 }
 require'nvim-rooter'.setup()
 
 require("ibl").setup {
-    indent = { char = '┊' },
-    scope = { highlight = highlight }
+  indent = { char = '┊' },
+  scope = { highlight = highlight }
 }
 require("notify").setup({
-    render = "minimal",
-    stages = "static",
-    timeout = 2000
+  render = "minimal",
+  stages = "static",
+  timeout = 2000
 })
 
 require("noice").setup({
