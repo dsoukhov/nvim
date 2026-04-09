@@ -21,11 +21,6 @@ npairs.setup {
   },
 }
 
-require("nvim-treesitter.configs").setup {
-  autopairs = { enable = true },
-  autotag = { enable = true },
-}
-
 local ts_conds = require "nvim-autopairs.ts-conds"
 
 -- press % => %% is only inside comment or string

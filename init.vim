@@ -1,4 +1,5 @@
 " auto-install vim-plug
+" installed plugin dir ~/.local/share/nvim/plugged
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -28,10 +29,9 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'smoka7/hop.nvim'
 Plug 'nvim-pack/nvim-spectre'
 Plug 'chaoren/vim-wordmotion'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch':'main'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch':'main'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
-Plug 'SmiteshP/nvim-navic'
 Plug 'neovim/nvim-lspconfig'
 Plug 'folke/noice.nvim'
 Plug 'rcarriga/nvim-notify'
