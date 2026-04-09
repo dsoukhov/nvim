@@ -138,4 +138,4 @@ EOF
 
 "nvim-tree cfg
 let g:nvim_tree_respect_buf_cwd = 1
-nnoremap <leader>n :NvimTreeToggle<CR>
+nnoremap <silent> <leader>n :NvimTreeToggle<CR>

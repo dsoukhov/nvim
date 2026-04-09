@@ -127,7 +127,7 @@ map ^[[84;6u <C-S-T>
 map ^[[83;6u <C-S-S>
 
 " toggle spellcheck
-nn <leader>z :setlocal spell! spell?<CR>
+nn <silent> <leader>z :setlocal spell! spell?<CR>
 " turn spellcheck on for gitcommits
 autocmd FileType gitcommit setlocal spell
 
@@ -156,10 +156,10 @@ endfunction
 
 nnoremap <silent> <leader>q :call ToggleQuickfix()<CR>
 
-nmap <Leader>] :bn<CR>
-nmap <Leader>[ :bp<CR>
+nmap <silent> <Leader>] :bn<CR>
+nmap <silent> <Leader>[ :bp<CR>
 
-nmap <Leader>0 :e#<CR>
-nmap <Leader>c :bw!<CR>
-nmap <Leader>C :q!<CR>
-nmap <Leader>w :w<CR>
+nmap <silent> <Leader>0 :e#<CR>
+nmap <silent> <Leader>c :bw!<CR>
+nmap <silent> <Leader>C :q!<CR>
+nmap <silent> <Leader>w :w<CR>
