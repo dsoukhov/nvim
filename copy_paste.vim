@@ -7,5 +7,5 @@ nmap <leader>y :lua require'clipmenu-nvim'.clipmenu_telescope_BC()<CR>
 nmap <leader>Y :lua require'clipmenu-nvim'.clipmenu_telescope_AC()<CR>
 vmap <leader>y :lua require'clipmenu-nvim'.clipmenu_telescope_VM()<CR>
 vmap <leader>Y :lua require'clipmenu-nvim'.clipmenu_telescope_VM()<CR>
-nmap ]p :lua require'clipmenu-nvim'.clipmenu_yankring_cycle_forward()<CR>
-nmap [p :lua require'clipmenu-nvim'.clipmenu_yankring_cycle_back()<CR>
+" nmap ]p :lua require'clipmenu-nvim'.clipmenu_yankring_cycle_forward()<CR>
+" nmap [p :lua require'clipmenu-nvim'.clipmenu_yankring_cycle_back()<CR>

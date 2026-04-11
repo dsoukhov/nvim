@@ -138,7 +138,7 @@ nnoremap <CR> :noh<CR><CR>
 vmap r "_dP
 
 " map select last pasted as gp
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+" nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 nmap - _
 
